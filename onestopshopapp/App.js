@@ -6,10 +6,6 @@ import { Provider } from "react-redux";
 import store from "./redux";
 
 class App extends Component {
-  state = {
-    loading: true
-  };
-
   render() {
     return (
       <Provider store={store}>
