@@ -1,11 +1,10 @@
 import * as actionTypes from "./types";
-import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { AsyncStorage } from "react-native";
 
-const instance = axios.create({
-  baseURL: "http://178.128.114.232/api/"
-});
+import { AsyncStorage } from "react-native";
+import instance from "./instance"
+
+
 
 export const checkForExpiredToken = navigation => {
   return async dispatch => {
@@ -36,10 +35,10 @@ export const checkForExpiredToken = navigation => {
 const setAuthToken = async token => {
   if (token) {
     await AsyncStorage.setItem("token", token);
-    axios.defaults.headers.common.Authorization = `jwt ${token}`;
+    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
   } else {
     await AsyncStorage.removeItem("token");
-    delete axios.defaults.headers.common.Authorization;
+    delete instance.defaults.headers.common.Authorization;
   }
 };
 
@@ -53,10 +52,10 @@ export const login = (userData, navigation) => {
     try {
       let response = await instance.post("login/", userData);
       let user = response.data;
-      let decodedUser = jwt_decode(user.token);
-      setAuthToken(user.token);
+      let decodedUser = jwt_decode(user.access);
+      setAuthToken(user.access);
       dispatch(setCurrentUser(decodedUser));
-      navigation.replace("Profile");
+      navigation.replace("Homepage");
     } catch (error) {
       console.error(error);
     }

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actionCreators from "../../store/actions/authActions";
+import * as actionCreators from "../../redux/actions/authActions";
+import { withNavigation } from "react-navigation";
+
 // NativeBase Components
 import {
   Text,
@@ -17,7 +19,7 @@ import {
 } from "native-base";
 
 class Login extends Component {
-  componentDidMount = () => {
+  componentDidMount() {
     this.props.checkForToken();
   };
 
@@ -26,9 +28,14 @@ class Login extends Component {
     password: ""
   };
 
+
+  handleChange = keyValue => {
+    this.setState(keyValue);
+  };
+
   render() {
     if (this.props.user) {
-      this.props.navigation.navigate("Homepage");
+      return this.props.navigation.navigate("Homepage");
     }
     return (
       <Content>
@@ -38,7 +45,7 @@ class Login extends Component {
             <Body>
               <Form>
                 <Body>
-                  <Label style={{ color: "white" }}>Username</Label>
+                  <Label style={{ color: "white" }}> //add the errors here </Label>
                 </Body>
                 <Item
                   rounded
@@ -51,12 +58,13 @@ class Login extends Component {
                   <Input
                     autoCorrect={false}
                     autoCapitalize="none"
+                    placeholder="username"
                     onChangeText={username => this.setState({ username })}
                     value={this.state.username}
                   />
                 </Item>
                 <Body>
-                  <Label style={{ color: "white" }}>Password</Label>
+                  <Label style={{ color: "white" }}>//add the errors here </Label>
                 </Body>
                 <Item
                   rounded
@@ -64,6 +72,7 @@ class Login extends Component {
                 >
                   <Input
                     autoCorrect={false}
+                    placeholder="password"
                     secureTextEntry
                     autoCapitalize="none"
                     onChangeText={password => this.setState({ password })}
@@ -77,6 +86,7 @@ class Login extends Component {
             success
             onPress={() => this.props.login(this.state, this.props.navigation)}
           >
+            {console.log("this.state", this.state)}
             <Text>Login</Text>
           </Button>
         </List>
@@ -97,7 +107,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actionCreators.checkForExpiredToken(navigation))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login);
+export default withNavigation(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Login)
+);
+

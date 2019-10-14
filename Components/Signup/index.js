@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actionCreators from "../../store/actions/authActions";
+import * as actionCreators from "../../redux/actions/authActions";
+import { withNavigation } from "react-navigation";
+
 // NativeBase Components
 import {
   Text,
@@ -53,6 +55,8 @@ class Signup extends Component {
                     autoCapitalize="none"
                     onChangeText={username => this.setState({ username })}
                     value={this.state.username}
+                    placeholder="username"
+
                   />
                 </Item>
                 <Body>
@@ -66,6 +70,8 @@ class Signup extends Component {
                     autoCorrect={false}
                     secureTextEntry
                     autoCapitalize="none"
+                    placeholder="password"
+
                     onChangeText={password => this.setState({ password })}
                   />
                 </Item>
@@ -98,7 +104,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actionCreators.checkForExpiredToken(navigation))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Signup);
+
+export default withNavigation(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Signup)
+);

@@ -3,7 +3,7 @@ import { Button, Text } from "native-base";
 import { connect } from "react-redux";
 import { withNavigation } from "react-navigation";
 
-import { logout } from "../../store/actions/authActions";
+import { logout } from "../../redux/actions/authActions";
 
 class LogoutButton extends Component {
   render() {

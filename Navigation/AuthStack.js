@@ -1,7 +1,8 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import Login from "../Components/Login";
-import Homepage from "../Components/Homepage";
+import Homepage from "../Components/HomePage";
+import Register from "../Components/Signup"
 
 const AuthStack = createStackNavigator(
   {
@@ -10,7 +11,7 @@ const AuthStack = createStackNavigator(
     Register: Register
   },
   {
-    initialRouteName: "Login",
+    initialRouteName: "Register",
     cardStyle: {
       backgroundColor: "rgb(20,90,100)"
     },
