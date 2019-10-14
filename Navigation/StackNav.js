@@ -1,17 +1,18 @@
-import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import Login from "../Components/Login";
 import Homepage from "../Components/HomePage";
 import Register from "../Components/Signup"
+import ProductsList from "../Components/ProductsList";
 
-const AuthStack = createStackNavigator(
+const StackNav = createStackNavigator(
   {
     Login: Login,
     Homepage: Homepage,
-    Register: Register
+    Register: Register,
+    ListScreen: ProductsList,
   },
   {
-    initialRouteName: "Register",
+    initialRouteName: "HomePage",
     cardStyle: {
       backgroundColor: "rgb(20,90,100)"
     },
@@ -27,4 +28,4 @@ const AuthStack = createStackNavigator(
   }
 );
 
-export default AuthStack;
+export default StackNav;
