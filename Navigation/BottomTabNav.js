@@ -2,10 +2,13 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 
 //Import your stacks
 import ProductsTab from "./ProductsTab";
-
+//
+import ProfileTab from "./ProfileTab"
 const BottomTabNav = createBottomTabNavigator(
     {
         Products: ProductsTab,
+        Profile: ProfileTab,
+
 
     },
     {
