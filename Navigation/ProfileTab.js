@@ -4,11 +4,13 @@ import { Icon } from "native-base";
 import ProductsList from "../Components/ProductsList";
 // import Profile from "../Components/Profile";
 
+//Temp for testing
+import OrderDetails from "../Components/OrderDetails";
 import { createStackNavigator } from "react-navigation-stack";
 
 const ProfileTab = createStackNavigator(
     {
-        ProductsListScreen: ProductsList,
+        OrderDetails: OrderDetails,
         // Profile: Profile,
         // ProductDetailScreen: ProductDetail
     },

@@ -45,14 +45,12 @@ class HomePage extends Component {
     console.disableYellowBox = true; //disables ugly warnings
 
     return (
-      <ImageBackground source={wallpaper} style={{ width: '100%', height: '100%' }}>
-        <Container >
-          <View />
-          {/* {this.props.user ? logout() : login()} */}
-          <AppContainer />
+      <Container >
+        <View />
+        {/* {this.props.user ? logout() : login()} */}
+        <AppContainer />
 
-        </Container>
-      </ImageBackground>
+      </Container>
 
     )
 

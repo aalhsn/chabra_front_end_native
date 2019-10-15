@@ -1,16 +1,27 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "transparent",
+    opacity: 1,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 10,
+    borderRadius: 30,
+
+  },
   text: {
     color: "white",
-    fontSize: 15,
+    fontSize: 22,
     fontWeight: "bold",
+    marginBottom: 30,
+
     opacity: 1
   },
 
   text1: {
     color: "white",
-    fontSize: 10,
+    fontSize: 16,
     fontStyle: "italic",
     fontWeight: "bold",
   },
@@ -24,11 +35,27 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
 
-    opacity: 0.5,
+    opacity: 0.3,
     backgroundColor: "black",
     height: "100%",
-    width: "100%"
+    width: "100%",
+    borderRadius: 30,
+
   },
+  cardView: {
+    marginTop: 10,
+
+    marginLeft: 10,
+    marginRight: 10,
+    // marginBottom: 10,
+    borderRadius: 30,
+
+  },
+  cardDesign: {
+    borderRadius: 25
+
+  },
+
   listitem: {
     backgroundColor: "transparent",
     borderTopWidth: 0,
@@ -36,7 +63,8 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
     borderBottomWidth: 0,
     height: 180,
-    flexDirection: "row"
+    flexDirection: "row",
+
   },
   transparent: {
     backgroundColor: "transparent",
@@ -44,15 +72,27 @@ const styles = StyleSheet.create({
     borderRightWidth: 0,
     borderLeftWidth: 0,
     borderBottomWidth: 0,
-    flexDirection: "row"
+    flexDirection: "row",
+    borderRadius: 30,
+
   },
   thumbnail: {
     backgroundColor: "white",
-    opacity: 1
+    opacity: 1,
+    height: 140,
+    width: 140,
+    borderRadius: 30,
+
+
+
   },
   background: {
     width: null,
-    flex: 1
+    flex: 1,
+    borderRadius: 40,
+    backgroundColor: "transparent",
+
+
   }
 });
 export default styles;

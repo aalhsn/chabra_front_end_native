@@ -2,12 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 // NativeBase Components
-import { List, Content, Icon, Button } from "native-base";
+import { List, Content, Icon, Button, } from "native-base";
+
+import { ImageBackground, View } from "react-native";
 
 //Components
 import ProductCard from "./ProductCard";
 
+import wallpaper from "../../assets/wall.png"
 
+// Style
+import styles from "./styles";
 
 const ProductsList = (props) => {
     const products = props.products
@@ -16,9 +21,14 @@ const ProductsList = (props) => {
         market = products.map((product, idx) => { return <ProductCard product={product} key={idx} /> });
     }
     return (
-        <Content>
-            <List>{market}</List>
-        </Content>
+        <ImageBackground source={wallpaper} style={{ width: '100%', height: '100%' }}>
+
+            <Content style={{ marginTop: 10 }}>
+                <List
+                >{market}</List>
+            </Content>
+        </ImageBackground>
+
     );
 };
 
