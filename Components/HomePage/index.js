@@ -1,8 +1,14 @@
 
 import React, { Component } from "react";
-import { View } from "react-native";
 import { connect } from "react-redux";
 import * as actionCreators from "../../redux/actions/authActions";
+import {
+  View,
+  ImageBackground
+} from "react-native";
+
+import wallpaper from "../../assets/wall.png"
+
 
 //NativeBase Components
 import { Container, Header, Button, Text } from "native-base";
@@ -36,14 +42,20 @@ class HomePage extends Component {
     //     </Button>
     //   );
 
+    console.disableYellowBox = true; //disables ugly warnings
 
-    return <Container style={styles.transparent}>
-      <View style={styles.overlay} />
-      <Header style={styles.transparent} />
-      {/* {this.props.user ? logout() : login()} */}
-      <AppContainer />
+    return (
+      <ImageBackground source={wallpaper} style={{ width: '100%', height: '100%' }}>
+        <Container >
+          <View />
+          {/* {this.props.user ? logout() : login()} */}
+          <AppContainer />
 
-    </Container>
+        </Container>
+      </ImageBackground>
+
+    )
+
   }
 }
 
