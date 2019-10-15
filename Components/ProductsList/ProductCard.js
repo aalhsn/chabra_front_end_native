@@ -10,7 +10,7 @@ import styles from "./styles";
 
 const ProductCard = ({ navigation, product }) => {
   const handlePress = () => {
-    navigation.navigate("ProductDetailScreen", { productID: product.id });
+    navigation.navigate("ProductDetailScreen", { productID: product.id }, {productName: product.name});
   };
   return (
     <ImageBackground

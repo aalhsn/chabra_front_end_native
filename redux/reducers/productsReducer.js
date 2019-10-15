@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS } from "../actions/types";
+import * as actionTypes from "../actions/types";
 
 const initialState = {
     products: [],
@@ -7,14 +7,19 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case FETCH_PRODUCTS:
+        case actionTypes.FETCH_PRODUCTS:
             const products = action.payload;
             return {
                 ...state,
                 products: products,
                 loading: false
             };
-        default:
+        case actionTypes.LOADING:
+            return {
+                ...state,
+                loading: true
+            };
+            default:
             return state;
     }
 };
