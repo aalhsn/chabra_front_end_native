@@ -9,6 +9,7 @@ import store from "./redux";
 import AppContainer from "./Navigation";
 import HomePage from "./Components/HomePage";
 import ProductsList from "./Components/ProductsList";
+import ShoppingBasket from "./Components/ShoppingBasket"
 
 class App extends Component {
   state = {
@@ -36,3 +37,4 @@ class App extends Component {
 }
 
 export default App;
+
