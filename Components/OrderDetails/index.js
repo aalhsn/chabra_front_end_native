@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { View } from "react-native";
 
 // NativeBase Components
@@ -12,7 +11,6 @@ class OrderDetail extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: `Order Detail`
-      //   headerRight: <CartButton />
     };
   };
 
@@ -54,9 +52,4 @@ class OrderDetail extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  // orderReducer: state.orderReducer
-  //coffeeReducer: state.coffeeReducer
-});
-
-export default connect(mapStateToProps)(OrderDetail);
+export default (OrderDetail);
