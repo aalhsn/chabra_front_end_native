@@ -47,7 +47,9 @@ const ProductCard = ({ navigation, product }) => {
                   Price per item: {product.price} KWD
                 </Text>
                 {"\n"}
-                {/* <Text style={styles.text1}>Added to store {moment(product.date_added).fromNow()}</Text> */}
+                <Text style={styles.text1}>
+                  Added to store {moment(product.date_added).fromNow()}
+                </Text>
               </Text>
             </Left>
           </CardItem>

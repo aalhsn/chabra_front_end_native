@@ -9,13 +9,13 @@ class BasketItem extends Component {
     return (
       <ListItem style={{ borderBottomWidth: 0 }}>
         <Left>
-          <Text style={{ color: "white", marginLeft: 16 }}> {item.name} </Text>
+          <Text style={{ color: "black", marginLeft: 16 }}> {item.name} </Text>
           <Text note style={{ marginLeft: 16 }}>
             {item.price}
           </Text>
         </Left>
         <Body>
-          <Text style={{ color: "white" }}>{item.quantity}</Text>
+          <Text style={{ color: "black" }}>{item.quantity}</Text>
         </Body>
         <Right>
           <Button transparent>

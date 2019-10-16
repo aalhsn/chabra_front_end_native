@@ -95,8 +95,8 @@ class ProductDetail extends Component {
                 <Text>+</Text>
               </Button>
               <Item rounded>
-                <Input>{this.state.quantity}</Input>
-                {/* <Input type="text" value={this.state.quantity}/> */}
+                {/* <Input>{this.state.quantity}</Input> */}
+                <Input type="text" value={this.state.quantity} />
               </Item>
               <Button
                 onPress={() =>

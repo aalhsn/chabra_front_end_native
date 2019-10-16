@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: "http://e5f9a584.ngrok.io/api/"
+  baseURL: "http://chabra.herokuapp.com/api/"
 });
 
-export default instance
+export default instance;
