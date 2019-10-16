@@ -3,13 +3,20 @@ import { connect } from "react-redux";
 
 
 // NativeBase Components
+
+
 import { List, Content, Icon, Button, Spinner } from "native-base";
+import { ImageBackground, View } from "react-native";
+
 
 //Components
 import ProductCard from "./ProductCard";
 import BasketBtn from "../BasketBtn"
 
+import wallpaper from "../../assets/wall.png"
 
+// Style
+import styles from "./styles";
 
 class ProductsList extends Component{  
     static navigationOptions = {
@@ -27,9 +34,14 @@ class ProductsList extends Component{
         market = products.map((product, idx) => { return <ProductCard product={product} key={idx} /> });
     }
     return (
-        <Content>
-            <List>{market}</List>
-        </Content>
+        <ImageBackground source={wallpaper} style={{ width: '100%', height: '100%' }}>
+
+            <Content style={{ marginTop: 10 }}>
+                <List
+                >{market}</List>
+            </Content>
+        </ImageBackground>
+
     );
     }
 };

@@ -25,7 +25,7 @@ const StackNav = createStackNavigator(
       headerTitleStyle: {
         fontWeight: "bold"
       },
-      headerTintColor: "white"
+      headerTintColor: "rgb(20,90,100)"
     }
   }
 );
