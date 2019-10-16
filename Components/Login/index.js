@@ -34,7 +34,7 @@ class Login extends Component {
 
   render() {
     if (this.props.user) {
-      return this.props.navigation.navigate("Homepage");
+      return this.props.navigation.replace("ProfileScreen");
     }
     return (
       <Content>

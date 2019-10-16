@@ -4,6 +4,18 @@ import jwt_decode from "jwt-decode";
 import { AsyncStorage } from "react-native";
 import instance from "./instance";
 
+
+export const fetchProfile = () => async dispatch => {
+  try {
+    const res = await instance.get("profile/");
+    const profile = res.data;
+    dispatch({ type: actionTypes.FETCH_PROFILE, payload: profile });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
 export const checkForExpiredToken = navigation => {
   return async dispatch => {
     // Get token
@@ -14,8 +26,6 @@ export const checkForExpiredToken = navigation => {
 
       // Decode token and get user info
       const user = jwt_decode(token);
-
-      console.log((user.exp - currentTime) / 60);
 
       // Check token expiration
       if (user.exp >= currentTime) {
@@ -50,12 +60,14 @@ export const login = (userData, navigation) => {
     try {
       let response = await instance.post("login/", userData);
       let user = response.data;
+      console.log("user:", user)
       let decodedUser = jwt_decode(user.access);
       setAuthToken(user.access);
       dispatch(setCurrentUser(decodedUser));
 
-      //Navigate to profile after defining login screen in ProfileTab then goBack()
-      navigation.replace("Homepage");
+      //Ask Khalid what he means by then goBack()
+      //Khalid's Note Navigate to profile after defining login screen in ProfileTab then goBack()
+      navigation.replace("ProfileScreen");
     } catch (error) {
       console.error(error);
     }

@@ -1,98 +1,63 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "transparent",
-        opacity: 1,
-        marginLeft: 10,
-        marginRight: 10,
-        marginBottom: 10,
-        borderRadius: 30,
-
+    hairLine: {
+        backgroundColor: '#cccccc',
+        height: 2,
+        marginBottom: 22,
+        marginTop: 22,
+        width: 340
     },
     text: {
-        color: "white",
-        fontSize: 22,
-        fontWeight: "bold",
-        marginBottom: 30,
+        color: "black",
+        fontSize: 15,
+        marginLeft: 16,
 
-        opacity: 1
-    },
-
-    text1: {
-        color: "white",
-        fontSize: 16,
-        fontStyle: "italic",
-        fontWeight: "bold",
+        justifyContent: "center",
+        alignItems: "center"
     },
     divider: {
         borderBottomColor: "black",
         borderBottomWidth: 1
     },
-    overlay: {
-        flex: 1,
-        position: "absolute",
-        left: 0,
-        right: 0,
-
-        opacity: 0.3,
-        backgroundColor: "black",
-        height: "100%",
-        width: "100%",
-        borderRadius: 30,
-
+    top: {
+        marginLeft: 0,
+        backgroundColor: "#ffffcc"
     },
-    cardView: {
-        marginTop: 10,
 
-        marginLeft: 10,
-        marginRight: 10,
-        // marginBottom: 10,
-        borderRadius: 30,
-
-    },
-    cardDesign: {
-        borderRadius: 25
+    titleOfDetail: {
+        marginBottom: 22,
+        color: "black",
+        fontSize: 20,
+        fontWeight: "bold",
 
     },
 
-    listitem: {
-        backgroundColor: "transparent",
-        borderTopWidth: 0,
-        borderRightWidth: 0,
-        borderLeftWidth: 0,
-        borderBottomWidth: 0,
-        height: 180,
-        flexDirection: "row",
+
+    middleText: {
+        marginTop: 12,
+        marginBottom: 8,
+
+        color: "#191b73",
+        fontWeight: "bold",
+        fontSize: 24,
+        justifyContent: 'center',
+        alignItems: 'center',
 
     },
-    transparent: {
-        backgroundColor: "transparent",
-        borderTopWidth: 0,
-        borderRightWidth: 0,
-        borderLeftWidth: 0,
-        borderBottomWidth: 0,
-        flexDirection: "row",
-        borderRadius: 30,
-
+    center: {
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    thumbnail: {
-        backgroundColor: "white",
-        opacity: 1,
-        height: 140,
-        width: 140,
-        borderRadius: 30,
 
-
-
+    addIcon: {
+        fontSize: 40,
+        fontWeight: "bold",
+        color: "white"
     },
-    background: {
-        width: null,
-        flex: 1,
-        borderRadius: 40,
-        backgroundColor: "transparent",
-
-
+    item: {
+        color: "white"
     }
 });
+
 export default styles;

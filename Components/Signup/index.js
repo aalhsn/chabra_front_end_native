@@ -101,7 +101,7 @@ const mapDispatchToProps = dispatch => ({
   signup: (userData, navigation) =>
     dispatch(actionCreators.signup(userData, navigation)),
   checkForToken: navigation =>
-    dispatch(actionCreators.checkForExpiredToken(navigation))
+    dispatch(actionCreators.checkForExpiredToken(navigation)),
 });
 
 

@@ -2,7 +2,10 @@
 import * as actionTypes from "../actions/types";
 
 const initialState = {
-  user: null
+  user: null,
+  profile: null,
+  profileLoading: true
+
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,6 +16,13 @@ const reducer = (state = initialState, action) => {
         user: action.payload
       };
 
+    case actionTypes.FETCH_PROFILE:
+      return {
+        ...state,
+        profile: action.payload,
+        profileLoading: false
+
+      };
     default:
       return state;
   }
