@@ -5,12 +5,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+  imgView: {
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
   image: {
     height: 300,
-    width: 300
+    width: 300,
+
   },
+  center: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
   name: {
-    fontSize: 20
+    fontSize: 20,
+    fontWeight: "bold",
+
+
   },
   description: {
     textDecorationLine: "underline"

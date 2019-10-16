@@ -79,7 +79,7 @@ class ProductDetail extends Component {
     } else {
       return (
         <Content>
-          <View>
+          <View style={styles.imgView}>
             <Thumbnail
               style={styles.image}
               bordered
@@ -87,7 +87,10 @@ class ProductDetail extends Component {
             />
           </View>
           <View>
-            <Text style={styles.name}>{product.name}</Text>
+            <View style={styles.center}>
+              <Text style={styles.name}>{product.name}</Text>
+            </View>
+
             <Text style={styles.description}>{product.description}</Text>
             <Text style={styles.price}> {product.price} KWD</Text>
             <View>
@@ -95,8 +98,8 @@ class ProductDetail extends Component {
                 <Text>+</Text>
               </Button>
               <Item rounded>
-                {/* <Input>{this.state.quantity}</Input> */}
-                <Input type="text" value={this.state.quantity} />
+                <Input>{this.state.quantity}</Input>
+                {/* <Input type="text" value={this.state.quantity} /> */}
               </Item>
               <Button
                 onPress={() =>
