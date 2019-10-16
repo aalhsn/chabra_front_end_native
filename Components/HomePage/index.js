@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actionCreators from "../../redux/actions/authActions";
 import { View } from "react-native";
 
 //NativeBase Components
-import { Container, Header, Button, Text } from "native-base";
+import { Container } from "native-base";
 
 // Style
 import styles from "./styles";
