@@ -6,7 +6,7 @@ class ShoppingCartBtn extends Component {
   render() {
     return (
       <Icon
-        onPress={() => this.props.navigation.navigate("ShoppingBasket")}
+        onPress={() => this.props.navigation.navigate("ShoppingBasketScreen")}
         name="shoppingcart"
         type="AntDesign"
       />

@@ -21,13 +21,12 @@ import {
 class Login extends Component {
   componentDidMount() {
     this.props.checkForToken();
-  };
+  }
 
   state = {
     username: "",
     password: ""
   };
-
 
   handleChange = keyValue => {
     this.setState(keyValue);
@@ -45,7 +44,10 @@ class Login extends Component {
             <Body>
               <Form>
                 <Body>
-                  <Label style={{ color: "white" }}> //add the errors here </Label>
+                  <Label style={{ color: "white" }}>
+                    {" "}
+                    //add the errors here{" "}
+                  </Label>
                 </Body>
                 <Item
                   rounded
@@ -64,7 +66,9 @@ class Login extends Component {
                   />
                 </Item>
                 <Body>
-                  <Label style={{ color: "white" }}>//add the errors here </Label>
+                  <Label style={{ color: "white" }}>
+                    //add the errors here{" "}
+                  </Label>
                 </Body>
                 <Item
                   rounded
@@ -86,7 +90,6 @@ class Login extends Component {
             success
             onPress={() => this.props.login(this.state, this.props.navigation)}
           >
-            {console.log("this.state", this.state)}
             <Text>Login</Text>
           </Button>
         </List>
@@ -113,4 +116,3 @@ export default withNavigation(
     mapDispatchToProps
   )(Login)
 );
-

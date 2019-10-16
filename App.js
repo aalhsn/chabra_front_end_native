@@ -1,16 +1,14 @@
-
 import React, { Component } from "react";
 import { Spinner } from "native-base";
 import { Provider } from "react-redux";
-import * as Font from 'expo-font';
+import * as Font from "expo-font";
 
 // Store
 import store from "./redux";
-import AppContainer from "./Navigation";
 import HomePage from "./Components/HomePage";
-import ProductsList from "./Components/ProductsList";
-import ShoppingBasket from "./Components/ShoppingBasket"
-
+import { fetchProducts, checkForExpiredToken } from "./redux/actions";
+store.dispatch(fetchProducts());
+store.dispatch(checkForExpiredToken());
 class App extends Component {
   state = {
     loading: true
@@ -37,4 +35,3 @@ class App extends Component {
 }
 
 export default App;
-

@@ -2,9 +2,7 @@ import * as actionTypes from "./types";
 import jwt_decode from "jwt-decode";
 
 import { AsyncStorage } from "react-native";
-import instance from "./instance"
-
-
+import instance from "./instance";
 
 export const checkForExpiredToken = navigation => {
   return async dispatch => {
@@ -55,6 +53,8 @@ export const login = (userData, navigation) => {
       let decodedUser = jwt_decode(user.access);
       setAuthToken(user.access);
       dispatch(setCurrentUser(decodedUser));
+
+      //Navigate to profile after defining login screen in ProfileTab then goBack()
       navigation.replace("Homepage");
     } catch (error) {
       console.error(error);
