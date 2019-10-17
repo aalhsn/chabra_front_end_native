@@ -17,6 +17,7 @@ const ProfileTab = createStackNavigator(
         OrderDetails: OrderDetails, //temp for testing
         ProfileScreen: Profile,
         SignupScreen: Signup,
+
     },
 
     {

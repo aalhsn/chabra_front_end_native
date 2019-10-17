@@ -15,6 +15,10 @@ export const fetchProfile = () => async dispatch => {
   }
 };
 
+const resetProfile = () => ({
+  type: actionTypes.RESET_PROFILE,
+});
+
 
 export const checkForExpiredToken = navigation => {
   return async dispatch => {
@@ -86,6 +90,19 @@ export const signup = (userData, navigation) => {
 };
 
 export const logout = () => {
-  setAuthToken();
-  return setCurrentUser();
-};
+  return async dispatch => {
+
+    setAuthToken();
+    dispatch(setCurrentUser());
+    dispatch(resetProfile());
+
+  }
+}
+  // setAuthToken();
+  // return (setCurrentUser())
+
+//}
+
+
+
+

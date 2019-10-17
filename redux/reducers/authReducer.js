@@ -23,6 +23,15 @@ const reducer = (state = initialState, action) => {
         profileLoading: false
 
       };
+
+    case actionTypes.RESET_PROFILE:
+      return {
+        ...state,
+        profile: null,
+        profileLoading: true
+
+      };
+
     default:
       return state;
   }
