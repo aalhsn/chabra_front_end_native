@@ -29,6 +29,7 @@ export const setLoading = () => ({
     payload: item
   });
   
-  export const checkoutBasket = () => ({
-    type: actionTypes.CHECKOUT
+  export const checkoutBasket = (order) => ({
+    type: actionTypes.CHECKOUT,
+    payload: order
   });
