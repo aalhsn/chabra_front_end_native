@@ -17,7 +17,7 @@ import styles from "./styles";
 
 class ProductsList extends Component {
   static navigationOptions = {
-    title: "Basket",
+    title: "Chabra List",
     headerRight: <BasketBtn />
   };
 

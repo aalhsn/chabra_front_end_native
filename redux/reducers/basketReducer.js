@@ -1,7 +1,8 @@
 import * as actionTypes from "../actions/types";
 
 const initialState = {
-  items: []
+  items: [],
+  orders:[]
 };
 
 const basketReducer = (state = initialState, action) => {
@@ -15,7 +16,7 @@ const basketReducer = (state = initialState, action) => {
           
       );
       if (checkItem) {
-        checkItem.quantity++;
+        checkItem.quantity+=newItem.quantity
         return {
           ...state,
           items: [...state.items]
@@ -36,7 +37,7 @@ const basketReducer = (state = initialState, action) => {
 
     case actionTypes.CHECKOUT:
       return {
-        ...state,
+        orders:state.orders.concat(action.payload),
         items: []
       };
 

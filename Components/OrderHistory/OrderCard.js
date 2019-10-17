@@ -16,11 +16,11 @@ import {
 // Style
 import styles from "./styles";
 
-const ProductCard = ({ navigation, product }) => {
+const OrderCard = ({ navigation, order }) => {
   const handlePress = () => {
     navigation.navigate(
-      "ProductDetailScreen",
-      { productID: product.id, productName: product.name }
+      "OrderDetailScreen",
+      { orderRef: order.ref }
     );
   };
   return (
@@ -34,20 +34,15 @@ const ProductCard = ({ navigation, product }) => {
         <Card style={styles.transparent}>
           <CardItem style={styles.transparent}>
             <Left>
-              <Thumbnail
-                bordered
-                source={{ uri: product.img }}
-                style={styles.thumbnail}
-              />
               <Text style={styles.text}>
-                {product.name}
+                {order.ref}
                 {"\n"}
                 <Text style={styles.text1}>
-                  Price per item: {product.price} KWD
+                  Total {order.total_order_price} KWD
                 </Text>
                 {"\n"}
                 <Text style={styles.text1}>
-                  Added to store {moment(product.date_added).fromNow()}
+                  Ordered {order.date}
                 </Text>
               </Text>
             </Left>
@@ -58,4 +53,4 @@ const ProductCard = ({ navigation, product }) => {
   );
 };
 
-export default withNavigation(ProductCard);
+export default withNavigation(OrderCard);

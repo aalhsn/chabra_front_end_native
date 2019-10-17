@@ -17,7 +17,7 @@ import styles from "./styles";
 
 class Profile extends Component {
     static navigationOptions = {
-        title: "Your Profile",
+        title: "Profile",
     };
 
     componentDidMount() {
@@ -44,12 +44,12 @@ class Profile extends Component {
                                     button
                                     onPress={() => alert("This is Card Header")}
                                 >
-                                    <Text style={styles.middleText}> {profile.user.username}'s Profile</Text>
+                                  
                                 </CardItem>
                                 <CardItem button onPress={() => alert("This is Card Body")}>
                                     <Body>
-                                        <Text style={styles.titleOfDetail}>Username:  <Text> {profile.user.username}</Text>
-                                        </Text>
+                                        <Text style={styles.titleOfDetail}>Username: {profile.user.username}</Text>
+                                        
                                         <View style={styles.hairLine} />
 
                                         <Text style={styles.titleOfDetail}>First Name: <Text> {profile.user.first_name}</Text>
@@ -72,11 +72,11 @@ class Profile extends Component {
                                 <CardItem
                                     footer
                                     button
-                                    onPress={() => alert("This is Card Footer")}
                                     style={styles.center}
                                 >
-                                    <Button>
-                                        <Text>Edit Profile I don't work yet</Text>
+                                    
+                                    <Button onPress={() => this.props.navigation.navigate("OrderListScreen")} >
+                                        <Text>Order History</Text>
                                     </Button>
                                 </CardItem>
                             </Card>

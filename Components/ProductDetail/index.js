@@ -25,7 +25,7 @@ import styles from "./styles";
 
 class ProductDetail extends Component {
   state = {
-    quantity: 0
+    quantity: 1
   };
 
   static navigationOptions = ({ navigation }) => {
@@ -53,6 +53,7 @@ class ProductDetail extends Component {
 
   handleAddItem = () => {
     const newItem = {
+      id: this.props.product.id,
       name: this.props.product.name,
       price: this.props.product.price,
       quantity: this.state.quantity
