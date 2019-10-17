@@ -89,7 +89,8 @@ class OrderSummary extends Component {
 
 const mapStateToProps = state => ({
   items: state.basketReducer.items,
-  orders: state.basketReducer.orders
+  orders: state.basketReducer.orders,
+  user: state.authReducer.user
 });
 
 const mapDispatchToProps = dispatch => ({
