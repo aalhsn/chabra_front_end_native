@@ -73,22 +73,22 @@ class Profile extends Component {
                 <>
 
 
-                        <Content padder style={{ marginTop: 10 }}>
-                            <Card>
-                                <CardItem
-                                    style={styles.middleText}
-                                    button
-                                    onPress={() => alert("This is Card Header")}
-                                >
-                                  
-                      
+                    <Content padder style={{ marginTop: 10 }}>
+                        <Card>
+                            <CardItem
+                                style={styles.middleText}
+                                button
+                                onPress={() => alert("This is Card Header")}
+                            >
+
+
                                 <Thumbnail
                                     style={styles.image}
                                     bordered
                                     source={{ uri: `http://chabra.herokuapp.com${profile.image}` }}
                                 />
 
-                                </CardItem>
+                            </CardItem>
 
                             <CardItem button onPress={() => alert("This is Card Body")}>
                                 <Body>
@@ -112,8 +112,6 @@ class Profile extends Component {
 
                                     <Text style={styles.titleOfDetail}>Email: {profile.user.email}</Text>
                                     <View style={styles.hairLine} />
-                                    </Body>
-                                </CardItem>
 
 
 
@@ -141,7 +139,7 @@ class Profile extends Component {
                             </CardItem>
 
 
-  <CardItem
+                            <CardItem
                                 style={styles.middleText}>
                                 <Button onPress={() => this.props.navigation.navigate("OrderListScreen")} >
                                     <Text>Order History</Text>
