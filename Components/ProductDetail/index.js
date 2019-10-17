@@ -29,8 +29,10 @@ class ProductDetail extends Component {
   };
 
   static navigationOptions = ({ navigation }) => {
+    console.log("navigation.getParam(productName)", navigation.getParam("productName"))
     return {
-      title: navigation.getParam("productName"),
+      //Hey Anfal ask why this annoying title is not being displayed!!!!! 
+      title: navigation.getParam("productID").name,
       headerRight: <BasketBtn />
     };
   };
