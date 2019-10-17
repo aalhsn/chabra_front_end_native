@@ -17,7 +17,7 @@ import styles from "./styles";
 
 class Profile extends Component {
     static navigationOptions = {
-        title: "Your Profile",
+        title: "Profile",
     };
 
     componentDidMount() {
@@ -72,23 +72,24 @@ class Profile extends Component {
             return (
                 <>
 
-                    <Content padder style={{ marginTop: 10 }}>
-                        <Card>
 
-                            <CardItem
-                                style={styles.middleText}
-                                button
-                                onPress={() => alert("This is Card Header")}
-                            >
-
-
+                        <Content padder style={{ marginTop: 10 }}>
+                            <Card>
+                                <CardItem
+                                    style={styles.middleText}
+                                    button
+                                    onPress={() => alert("This is Card Header")}
+                                >
+                                  
+                      
                                 <Thumbnail
                                     style={styles.image}
                                     bordered
                                     source={{ uri: `http://chabra.herokuapp.com${profile.image}` }}
                                 />
 
-                            </CardItem>
+                                </CardItem>
+
                             <CardItem button onPress={() => alert("This is Card Body")}>
                                 <Body>
                                     <Text style={styles.titleOfDetail}>Username:  <Text> {profile.user.username}</Text>
@@ -108,8 +109,13 @@ class Profile extends Component {
                                     <Text style={styles.titleOfDetail}>Age: {profile.age}</Text>
                                     <View style={styles.hairLine} />
 
+
                                     <Text style={styles.titleOfDetail}>Email: {profile.user.email}</Text>
                                     <View style={styles.hairLine} />
+                                    </Body>
+                                </CardItem>
+
+
 
                                     <Text style={styles.titleOfDetail}>Phone Number: {profile.phone}</Text>
                                     <View style={styles.hairLine} />
@@ -133,6 +139,16 @@ class Profile extends Component {
                                     <Text>Logout</Text>
                                 </Button>
                             </CardItem>
+
+
+  <CardItem
+                                style={styles.middleText}>
+                                <Button onPress={() => this.props.navigation.navigate("OrderListScreen")} >
+                                    <Text>Order History</Text>
+                                </Button>
+                            </CardItem>
+
+
                         </Card>
                     </Content>
 

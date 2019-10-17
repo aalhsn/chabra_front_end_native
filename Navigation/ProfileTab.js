@@ -8,15 +8,19 @@ import OrderDetails from "../Components/OrderDetails";
 import Profile from "../Components/Profile";
 import Login from "../Components/Login";
 import Signup from "../Components/Signup";
+import OrderSum from "../Components/SummaryOrder"
+import OrderList from '../Components/OrderHistory'
 
 import { createStackNavigator } from "react-navigation-stack";
 
 const ProfileTab = createStackNavigator(
     {
         LoginScreen: Login,
-        OrderDetails: OrderDetails, //temp for testing
+        OrderListScreen:OrderList,
+        OrderDetailScreen: OrderDetails, //temp for testing
         ProfileScreen: Profile,
         SignupScreen: Signup,
+        SummaryScreen: OrderSum
 
     },
 
