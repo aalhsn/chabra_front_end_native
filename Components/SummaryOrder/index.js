@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {removeItemFromBasket, checkoutBasket }from "../../redux/actions";
+import { removeItemFromBasket, checkoutBasket } from "../../redux/actions";
 import moment from "moment";
 
 // NativeBase Components
-import { Text, List, Button , Title, Label, Input, Body, Item} from "native-base";
+import { Text, List, Button, Title, Label, Input, Body, Item } from "native-base";
 // Component
 import BasketItem from "./BasketItem";
 
 class OrderSummary extends Component {
+
+  static navigationOptions = {
+    title: "Order Summary",
+  };
 
   state = {
     address: "",
@@ -23,7 +27,7 @@ class OrderSummary extends Component {
     return total.toFixed(3);;
   };
 
- 
+
   OrderNumber = () => {
     let total = Math.random()
       .toString(36)
@@ -42,15 +46,15 @@ class OrderSummary extends Component {
       customer: this.props.user
     };
     this.props.checkoutBasket(newOrder);
-    alert("Order is received! \n Your Order Reference ID is [ "+newOrder.ref+" ]");
-    
+    alert("Order is received! \n Your Order Reference ID is [ " + newOrder.ref + " ]");
+
   };
-  
+
   render() {
     let items = this.props.items;
     let basketItems;
     if (items) {
-        basketItems = items.map((item, index) => (
+      basketItems = items.map((item, index) => (
         <BasketItem
           item={item}
           key={index}
@@ -61,25 +65,24 @@ class OrderSummary extends Component {
 
     return (
       <List>
-      <Title>Order Summary</Title>
         {basketItems}
-        <Text style={{marginTop: 20}}>Total: {this.totalPrice()} KWD</Text>
-       
-                <Text style={{ color: "black", marginTop: 50}}>Shipping Address</Text>
-              
-                <Item
-                  rounded
-                  style={{ backgroundColor: "white", marginTop: 10 }}
-                >
-                  <Input
-                    autoCorrect={false}
-                    autoCapitalize="none"
-                    placeholder="enter address"
-                    value={this.state.address}
-                    onChangeText={address => this.setState({ address })}
-                  />
-                </Item>
-        <Button full danger onPress={()=>this.handlePress()}>
+        <Text style={{ marginTop: 20 }}>Total: {this.totalPrice()} KWD</Text>
+
+        <Text style={{ color: "black", marginTop: 50 }}>Shipping Address</Text>
+
+        <Item
+          rounded
+          style={{ backgroundColor: "white", marginTop: 10 }}
+        >
+          <Input
+            autoCorrect={false}
+            autoCapitalize="none"
+            placeholder="enter address"
+            value={this.state.address}
+            onChangeText={address => this.setState({ address })}
+          />
+        </Item>
+        <Button full danger onPress={() => this.handlePress()}>
           <Text>Checkout</Text>
         </Button>
       </List>

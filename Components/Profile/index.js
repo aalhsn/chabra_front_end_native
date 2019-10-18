@@ -5,23 +5,45 @@ import { withNavigation } from "react-navigation";
 
 // NativeBase Components
 import {
-    Text, Body, CardItem, Content, Card, Spinner, Button, Thumbnail
+    Text, Body, CardItem, Content, Card, Spinner, Button, Thumbnail, Drawer, Icon
 } from "native-base";
-import { ImageBackground, View } from "react-native";
+import { ImageBackground, View, Image } from "react-native";
 
 //Components
 import wallpaper from "../../assets/wall.png";
+import SideMenuButton from "../SideMenuButton"; //temp for testing
+import SideBar from '../../Navigation/SideBar';
+import profileHeader from "../../assets/profileHeader3.jpg"
 
 // Style
 import styles from "./styles";
 
 class Profile extends Component {
+
+    closeDrawer = () => {
+        this.drawer._root.close()
+    }
+
+    openDrawer = () => {
+        this.drawer._root.open()
+    };
     static navigationOptions = {
         title: "Profile",
+        headerLeft: <Button transparent onPress={this.openDrawer}>
+            <Icon
+                name="menu"
+                type="Feather"
+                style={styles.icon}
+            />
+        </Button>,
+
     };
 
     componentDidMount() {
-        this.props.fetchProfile();
+        if (this.props.user) {
+
+            this.props.fetchProfile();
+        }
     }
 
 
@@ -72,84 +94,100 @@ class Profile extends Component {
             return (
                 <>
 
+                    <Drawer ref={(ref) => { this.drawer = ref; }}
+                        content={<SideBar navigator={this.navigator} />}
+                        onClose={() => this.closeDrawer()} >
 
-                    <Content padder style={{ marginTop: 10 }}>
-                        <Card>
-                            <CardItem
-                                style={styles.middleText}
-                                button
-                                onPress={() => alert("This is Card Header")}
+                        <CardItem
+                        >
+                            <ImageBackground
+                                source={profileHeader}
+                                style={{ width: "100%", height: "100%" }}
                             >
 
+                                <View style={styles.center}>
+                                    <Image
+                                        style={styles.image}
+                                        bordered
+                                        source={{ uri: `http://chabra.herokuapp.com${profile.image}` }}
+                                    >
+                                    </Image>
 
-                                <Thumbnail
-                                    style={styles.image}
-                                    bordered
-                                    source={{ uri: `http://chabra.herokuapp.com${profile.image}` }}
-                                />
+                                </View>
 
-                            </CardItem>
+                            </ImageBackground>
 
-                            <CardItem button onPress={() => alert("This is Card Body")}>
-                                <Body>
-                                    <Text style={styles.titleOfDetail}>Username:  <Text> {profile.user.username}</Text>
-                                    </Text>
-                                    <View style={styles.hairLine} />
+                        </CardItem>
 
-                                    <Text style={styles.titleOfDetail}>First Name: <Text> {profile.user.first_name}</Text>
-
-                                    </Text>
-                                    <View style={styles.hairLine} />
-
-                                    <Text style={styles.titleOfDetail}>Last Name: <Text> {profile.user.last_name}</Text>
-
-                                    </Text>
-                                    <View style={styles.hairLine} />
-
-                                    <Text style={styles.titleOfDetail}>Age: {profile.age}</Text>
-                                    <View style={styles.hairLine} />
-
-
-                                    <Text style={styles.titleOfDetail}>Email: {profile.user.email}</Text>
-                                    <View style={styles.hairLine} />
+                        <Content >
+                            <Card>
 
 
 
-                                    <Text style={styles.titleOfDetail}>Phone Number: {profile.phone}</Text>
-                                    <View style={styles.hairLine} />
-
-                                    <Text style={styles.titleOfDetail}>Gender: {this.genderString(profile.gender)}</Text>
-                                    <View style={styles.hairLine} />
-
-                                </Body>
-                            </CardItem>
-                            <CardItem
-                                footer
-                                button
-                                onPress={() => alert("This is Card Footer")}
-                                style={styles.center}
-                            >
-                                <Button>
-                                    <Text>Edit Profile I don't work yet</Text>
-                                </Button>
-
-                                <Button danger onPress={this.props.logout}>
-                                    <Text>Logout</Text>
-                                </Button>
-                            </CardItem>
 
 
-                            <CardItem
-                                style={styles.middleText}>
-                                <Button onPress={() => this.props.navigation.navigate("OrderListScreen")} >
-                                    <Text>Order History</Text>
-                                </Button>
-                            </CardItem>
+
+                                <CardItem >
+                                    <Body>
+                                        <Text style={styles.titleOfDetail}>Username:  <Text> {profile.user.username}</Text>
+                                        </Text>
+                                        <View style={styles.hairLine} />
+
+                                        <Text style={styles.titleOfDetail}>First Name: <Text> {profile.user.first_name}</Text>
+
+                                        </Text>
+                                        <View style={styles.hairLine} />
+
+                                        <Text style={styles.titleOfDetail}>Last Name: <Text> {profile.user.last_name}</Text>
+
+                                        </Text>
+                                        <View style={styles.hairLine} />
+
+                                        <Text style={styles.titleOfDetail}>Age: {profile.age}</Text>
+                                        <View style={styles.hairLine} />
 
 
-                        </Card>
-                    </Content>
+                                        <Text style={styles.titleOfDetail}>Email: {profile.user.email}</Text>
+                                        <View style={styles.hairLine} />
 
+
+
+                                        <Text style={styles.titleOfDetail}>Phone Number: {profile.phone}</Text>
+                                        <View style={styles.hairLine} />
+
+                                        <Text style={styles.titleOfDetail}>Gender: {this.genderString(profile.gender)}</Text>
+                                        <View style={styles.hairLine} />
+
+                                    </Body>
+                                </CardItem>
+                                <CardItem
+                                    footer
+                                    button
+                                    onPress={() => alert("This is Card Footer")}
+                                    style={styles.center}
+                                >
+                                    <Button>
+                                        <Text>Edit Profile I don't work yet</Text>
+                                    </Button>
+
+                                    <Button danger onPress={this.props.logout}>
+                                        <Text>Logout</Text>
+                                    </Button>
+                                </CardItem>
+
+
+                                <CardItem
+                                    style={styles.middleText}>
+                                    <Button onPress={() => this.props.navigation.navigate("OrderListScreen")} >
+                                        <Text>Order History</Text>
+                                    </Button>
+                                </CardItem>
+
+
+                            </Card>
+                        </Content>
+
+                    </Drawer>
 
 
                 </>
