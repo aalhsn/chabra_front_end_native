@@ -4,6 +4,9 @@ import { removeItemFromBasket, checkoutBasket } from "../../redux/actions";
 
 // NativeBase Components
 import { Text, List, Button, Title } from "native-base";
+import GradientButton from 'react-native-gradient-buttons';
+import styles from "./styles";
+
 // Component
 import BasketItem from "./BasketItem";
 
@@ -48,9 +51,10 @@ class ShoppingBasket extends Component {
       <List>
         {basketItems}
         <Text>Total: {this.totalPrice()} KWD</Text>
-        <Button full warning onPress={() => this.handlePress()}>
-          <Text>Checkout</Text>
-        </Button>
+
+        <GradientButton width='90%' blueMarine rounded style={styles.roundedBtn} onPressAction={() => this.handlePress()}>
+          <Text style={styles.checkoutStyle}>Checkout</Text>
+        </GradientButton>
       </List>
     );
   }

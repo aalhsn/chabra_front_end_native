@@ -11,14 +11,18 @@ const ProductsTab = createStackNavigator(
     ProductsListScreen: ProductsList,
     ProductDetailScreen: ProductDetail,
     ShoppingBasketScreen: ShoppingBasket,
-    
+
   },
 
   {
     initialRouteName: "ProductsListScreen",
     navigationOptions: {
       tabBarLabel: "Chabra List",
-      tabBarIcon: () => <Icon type="Entypo" name="shop" size={20} />
+      tabBarIcon: () => <Icon type="Entypo" name="shop" size={20} />,
+      headerStyle: {
+        backgroundColor: "#3dffcb",
+        fontWeight: 'bold',
+      }
     }
   }
 );

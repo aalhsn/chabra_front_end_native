@@ -5,8 +5,14 @@ import moment from "moment";
 
 // NativeBase Components
 import { Text, List, Button, Title, Label, Input, Body, Item } from "native-base";
+import GradientButton from 'react-native-gradient-buttons';
+import styles from "./styles";
+
+
 // Component
 import BasketItem from "./BasketItem";
+
+
 
 class OrderSummary extends Component {
 
@@ -82,9 +88,13 @@ class OrderSummary extends Component {
             onChangeText={address => this.setState({ address })}
           />
         </Item>
-        <Button full danger onPress={() => this.handlePress()}>
-          <Text>Checkout</Text>
-        </Button>
+
+        <GradientButton width='90%' blueMarine rounded style={styles.roundedBtn} onPressAction={() => this.handlePress()}>
+          <Text style={styles.checkoutStyle}>Checkout</Text>
+        </GradientButton>
+
+
+
       </List>
     );
   }

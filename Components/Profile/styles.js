@@ -1,12 +1,17 @@
 import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     hairLine: {
-        backgroundColor: '#cccccc',
-        height: 2,
+        backgroundColor: '#575b61',
+        height: 1,
         marginBottom: 22,
         marginTop: 22,
         width: 340
     },
+    menu: {
+        color: "black",
+        tintColor: "black"
+    },
+
     image: {
         marginBottom: 22,
         marginTop: 22,

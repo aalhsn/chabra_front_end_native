@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
 
   },
   thumbnail: {
-    backgroundColor: "white",
+    backgroundColor: "transparent",
     opacity: 1,
     height: 140,
     width: 140,

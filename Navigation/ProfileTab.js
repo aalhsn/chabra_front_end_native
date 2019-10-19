@@ -30,7 +30,11 @@ const ProfileTab = createStackNavigator(
     {
         navigationOptions: {
             tabBarLabel: "Profile",
-            tabBarIcon: () => <Icon type="FontAwesome" name="user" size={20} />
+            tabBarIcon: () => <Icon type="FontAwesome" name="user" size={20} />,
+            headerStyle: {
+                backgroundColor: "#3dffcb",
+                fontWeight: 'bold',
+            }
         }
     }
 );

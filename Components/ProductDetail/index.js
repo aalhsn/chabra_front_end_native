@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import wallpaper from "../../assets/wall.png";
 
+import {ImageBackground} from "react-native"
 // NativeBase Components
 import {
   Thumbnail,
@@ -10,7 +12,11 @@ import {
   View,
   Spinner,
   Item,
-  Input
+  Input,
+  Card,
+  CardItem, 
+  Icon
+
 } from "native-base";
 //Components
 import BasketBtn from "../BasketBtn";
@@ -20,8 +26,12 @@ import {
   resetProductDetail,
   addItemToBasket
 } from "../../redux/actions";
+
 //Styles
 import styles from "./styles";
+// import { LinearGradient } from 'expo-linear-gradient';
+import GradientButton from 'react-native-gradient-buttons';
+
 
 class ProductDetail extends Component {
   state = {
@@ -29,11 +39,17 @@ class ProductDetail extends Component {
   };
 
   static navigationOptions = ({ navigation }) => {
-    console.log("navigation.getParam(productName)", navigation.getParam("productName"))
+
     return {
       //Hey Anfal ask why this annoying title is not being displayed!!!!! 
-      title: navigation.getParam("productID").name,
-      headerRight: <BasketBtn />
+      title: navigation.getParam("productName"),
+      headerRight: <BasketBtn />,
+      headerStyle: {
+        backgroundColor: "#3dffcb",
+        fontWeight: 'bold',
+  
+  
+      }
     };
   };
 
@@ -67,9 +83,19 @@ class ProductDetail extends Component {
     let checkQuantity = () => {
       if (product.quantity > 0) {
         return (
-          <Button full danger style={styles.order} onPress={this.handleAddItem}>
-            <Text>Add</Text>
-          </Button>
+
+              <GradientButton  blueMarine style={styles.mybutn} onPressAction={this.handleAddItem}>
+              <Text style={styles.basketBtn}>
+                <Icon
+                  name="shopping-basket"
+                  type="FontAwesome"
+                  style={styles.icon2}
+                /> Add to Basket
+  
+            </Text>
+            </GradientButton>
+
+
         );
       } else {
         return <Text>Out of stock.</Text>;
@@ -81,40 +107,60 @@ class ProductDetail extends Component {
       return <Spinner />;
     } else {
       return (
+      
+           <ImageBackground
+        source={wallpaper}
+        style={{ width: "100%", height: "100%" }}
+      >
         <Content>
           <View style={styles.imgView}>
-            <Thumbnail
+            <Thumbnail 
               style={styles.image}
               bordered
               source={{ uri: product.img }}
             />
           </View>
-          <View>
-            <View style={styles.center}>
-              <Text style={styles.name}>{product.name}</Text>
+
+
+
+          <View style={styles.overlay} >
+          <CardItem  >
+            <Text style={styles.description}>{product.description}</Text>
+            </CardItem>
             </View>
 
-            <Text style={styles.description}>{product.description}</Text>
             <Text style={styles.price}> {product.price} KWD</Text>
+
             <View>
-              <Button onPress={() => this.changeQuantity(1)}>
-                <Text>+</Text>
-              </Button>
-              <Item rounded>
-                {/* <Input>{this.state.quantity}</Input> */}
-                <Input type="text" value={this.state.quantity} />
-              </Item>
-              <Button
-                onPress={() =>
-                  this.state.quantity > 0 && this.changeQuantity(-1)
-                }
-              >
-                <Text>-</Text>
-              </Button>
-            </View>
+
+
+              <CardItem style={styles.myCard }>
+                <Button rounded
+                  onPress={() =>
+                    this.state.quantity > 0 && this.changeQuantity(-1)
+                  }
+                >
+                  <Text>-</Text>
+                </Button>
+
+                <Item rounded style={styles.inputField}>
+                  <Input style={styles.order}>{this.state.quantity}</Input>
+                  {/* <Input
+                    type="text" value={this.state.quantity} /> */}
+                </Item>
+                <Button rounded onPress={() => this.changeQuantity(1)}>
+                  <Text>+</Text>
+                </Button>
+
+
+              </CardItem>
             <View>{checkQuantity()}</View>
-          </View>
+            </View>
+
+
         </Content>
+        </ImageBackground>
+
       );
     }
   }

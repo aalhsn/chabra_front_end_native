@@ -5,14 +5,28 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+  inputField: {
+    width: 80,
+  },
+
   imgView: {
     justifyContent: "center",
     alignItems: "center"
   },
+  overlay: {
+    flex: 1,
+
+    margin: 20,
+
+    backgroundColor: "black",
+    opacity: 0.6,
+    borderRadius: 30,
+  },
 
   image: {
-    height: 300,
-    width: 300,
+    height: 200,
+    width: 200,
+    marginTop: 20,
 
   },
   center: {
@@ -26,19 +40,56 @@ const styles = StyleSheet.create({
 
 
   },
+  myDetailCard: {
+    margin: 20,
+    borderRadius: 50,
+    textAlign: "center",
+    alignSelf: "center"
+  },
+  basketBtn: {
+    fontSize: 20,
+    color: "white",
+    margin: 20
+
+  },
   description: {
-    textDecorationLine: "underline"
+    fontSize: 20,
+    margin: 20
+
+  },
+  icon2: {
+    color: 'white',
+    height: 30,
+    width: 30,
   },
   price: {
     fontWeight: "bold",
+    fontSize: 20,
+
     textDecorationLine: "none",
     //textAlign: "right",
-    marginBottom: 5
+    marginLeft: 20,
+    marginRight: 20,
   },
   order: {
     textAlign: "center",
     alignSelf: "center"
-  }
+  },
+
+  mybutn: {
+    textAlign: "center",
+    alignSelf: "center",
+    borderRadius: 100,
+    width: 200
+
+  },
+  myCard: {
+    backgroundColor: "white",
+    borderRadius: 100,
+    textAlign: "center",
+    alignSelf: "center"
+  },
+
 });
 
 export default styles;
