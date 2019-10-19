@@ -4,7 +4,7 @@ import * as actionCreators from "../redux/actions/authActions";
 import { withNavigation } from "react-navigation";
 
 import {
-    Text, Body, CardItem, Content, Button, Thumbnail, Icon
+    Text, Body, CardItem, Content, Button, Thumbnail, Icon, Item
 } from "native-base";
 import { View } from "react-native";
 import styles from "./styles";
@@ -15,32 +15,49 @@ class SideBar extends Component {
     render() {
         return (
             <>
-                <Content style={{ backgroundColor: "#4d5254", opacity: 0.95 }}>
+                <Content style={{ backgroundColor: "#16171f", opacity: 0.95 }}>
 
-                    <View style={{ margin: 5 }}>
+                    <View >
+
+                        <Item >
+
+                            <Button transparent onPress={() => this.props.navigation.navigate("OrderListScreen")}  >
+                                <Icon
+                                    name="back"
+                                    type="Entypo"
+                                    style={styles.icon2}
+                                />
+                                <Text style={styles.menuBtn}> Order History</Text>
+                            </Button>
+
+                        </Item>
+
+                        <Item >
+
+                            <Button transparent >
+                                <Icon
+                                    name="user-edit"
+                                    type="FontAwesome5"
+                                    style={styles.icon2}
+                                />
+                                <Text style={styles.menuBtn}>Edit Profile</Text>
+                            </Button>
+                        </Item>
+
+                        <Item >
+                            <Button transparent onPress={this.props.logout} >
 
 
-                        <Button transparent onPress={() => this.props.navigation.navigate("OrderListScreen")} style={{ margin: 5 }} >
-                            <Text style={{ color: "white" }}> Order History</Text>
-                        </Button>
-                        <Button transparent style={{ margin: 5 }}>
-                            <Text>Edit Profile I don't work yet</Text>
-                        </Button>
-
-                        <Button transparent onPress={this.props.logout} >
-                            <View >
-
-
+                                <Icon
+                                    name="log-out"
+                                    type="Feather"
+                                    style={styles.icon2}
+                                />
                                 <Text style={styles.menuBtn}>
-                                    <Icon
-                                        name="log-out"
-                                        type="Feather"
-                                        style={styles.icon2}
-                                    />
                                     Logout</Text>
-                            </View>
+                            </Button>
+                        </Item>
 
-                        </Button>
                     </View>
 
 

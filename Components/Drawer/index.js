@@ -19,7 +19,7 @@ export default class DrawerMenu extends Component {
                 ref={(ref) => { this.drawer = ref; }}
                 content={<SideBar />}
                 panOpenMask={0.80}
-                openDrawerOffset={0.5}
+                openDrawerOffset={0.7}
                 onClose={this.closeDrawer}
                 onOpen={this.openDrawer}
                 captureGestures="open"

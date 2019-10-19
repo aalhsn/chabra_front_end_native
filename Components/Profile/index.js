@@ -11,7 +11,6 @@ import { ImageBackground, View, Image } from "react-native";
 
 //Components
 import wallpaper from "../../assets/wall.png";
-import SideMenuButton from "../SideMenuButton"; //temp for testing
 import SideBar from '../../Navigation/SideBar';
 import profileHeader from "../../assets/profileHeader3.jpg"
 
@@ -137,8 +136,8 @@ class Profile extends Component {
                         <Drawer ref={(ref) => { this.drawer = ref; }}
                             content={<SideBar navigator={this.navigator} />}
                             onClose={() => this.closeDrawer()}
-                            panOpenMask={0.5}
-                            openDrawerOffset={0.5}
+                            panOpenMask={0.6}
+                            openDrawerOffset={.4}
                             onClose={this.closeDrawer}
                             onOpen={this.openDrawer}
                             captureGestures="open"

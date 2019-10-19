@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   menuBtn: {
-    fontSize: 26,
+    fontSize: 20,
     color: "white",
 
   },
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   menu: {
     color: "white",
     marginTop: 8,
-    marginRight: 8,
+    marginRight: 2,
     height: 50,
     width: 50,
     // tintColor: "white",
