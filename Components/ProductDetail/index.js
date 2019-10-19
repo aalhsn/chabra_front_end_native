@@ -29,7 +29,6 @@ import {
 
 //Styles
 import styles from "./styles";
-// import { LinearGradient } from 'expo-linear-gradient';
 import GradientButton from 'react-native-gradient-buttons';
 
 

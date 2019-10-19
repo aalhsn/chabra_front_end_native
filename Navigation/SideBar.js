@@ -4,9 +4,11 @@ import * as actionCreators from "../redux/actions/authActions";
 import { withNavigation } from "react-navigation";
 
 import {
-    Text, Body, CardItem, Content, Button, Thumbnail
+    Text, Body, CardItem, Content, Button, Thumbnail, Icon
 } from "native-base";
-import { ImageBackground, View } from "react-native";
+import { View } from "react-native";
+import styles from "./styles";
+
 
 class SideBar extends Component {
 
@@ -18,15 +20,26 @@ class SideBar extends Component {
                     <View style={{ margin: 5 }}>
 
 
-                        <Button onPress={() => this.props.navigation.navigate("OrderListScreen")} style={{ margin: 5 }} >
-                            <Text>Order History</Text>
+                        <Button transparent onPress={() => this.props.navigation.navigate("OrderListScreen")} style={{ margin: 5 }} >
+                            <Text style={{ color: "white" }}> Order History</Text>
                         </Button>
-                        <Button style={{ margin: 5 }}>
+                        <Button transparent style={{ margin: 5 }}>
                             <Text>Edit Profile I don't work yet</Text>
                         </Button>
 
-                        <Button danger onPress={this.props.logout} style={{ margin: 5 }}>
-                            <Text>Logout</Text>
+                        <Button transparent onPress={this.props.logout} >
+                            <View >
+
+
+                                <Text style={styles.menuBtn}>
+                                    <Icon
+                                        name="log-out"
+                                        type="Feather"
+                                        style={styles.icon2}
+                                    />
+                                    Logout</Text>
+                            </View>
+
                         </Button>
                     </View>
 
