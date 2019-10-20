@@ -18,19 +18,23 @@ import styles from "./styles";
 class OrderHistory extends Component {
   static navigationOptions = {
     title: "Orders History",
-    headerRight: <BasketBtn />
+    headerRight: <BasketBtn />,
+    headerStyle: {
+      backgroundColor: "#3dffcb",
+      fontWeight: 'bold',
+    }
   };
 
   render() {
     const orders = this.props.orders;
     const history = () => orders.map((order, idx) => {
       return <OrderCard order={order} key={idx} />;
-     });
-    
+    });
+
     return (
-        <Content style={{ marginTop: 10 }}>
-          <List>{orders && history() }</List>
-        </Content>
+      <Content style={{ marginTop: 10 }}>
+        <List>{orders && history()}</List>
+      </Content>
     );
   }
 }

@@ -7,6 +7,7 @@ import wallpaper from "../../assets/wall.png";
 import logo from "../../assets/chabraLogo.png";
 
 import { ImageBackground, Image } from "react-native"
+import GradientButton from 'react-native-gradient-buttons';
 
 // NativeBase Components
 import {
@@ -21,11 +22,9 @@ import {
   Item,
   Content,
   Header,
-  Thumbnail,
   Icon
 } from "native-base";
 
-import GradientButton from 'react-native-gradient-buttons';
 
 
 class Login extends Component {
@@ -130,6 +129,17 @@ class Login extends Component {
             >
               <Text style={{ color: "white", fontFamily: "Futura", fontSize: 22, }}>Login</Text>
             </GradientButton>
+
+            <Button transparent
+              onPress={() => this.props.navigation.navigate("SignupScreen")}
+              style={{
+                marginTop: 10, textAlign: "center",
+                alignSelf: "center"
+              }}>
+              <Text style={{
+                color: "#0d1a80", fontFamily: "Avenir", fontSize: 22,
+              }}>New user? Sign up</Text>
+            </Button>
           </List>
           <Body>
             <Label style={{ color: "red", opacity: 0.6 }} />

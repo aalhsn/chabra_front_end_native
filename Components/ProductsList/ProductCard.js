@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import moment from "moment";
 import { withNavigation } from "react-navigation";
+
+import { Col, Row, Grid } from "react-native-easy-grid";
+
 // NativeBase Components
 import {
   Content,
@@ -10,7 +13,8 @@ import {
   CardItem,
   Thumbnail,
   Text,
-  Left
+  Left,
+  Item
 } from "native-base";
 
 // Style
@@ -24,37 +28,41 @@ const ProductCard = ({ navigation, product }) => {
     );
   };
   return (
-    <Content style={styles.container}>
-      <View style={styles.overlay} />
-      <ListItem
+    <Content style={styles.container} >
+      <View
+        style={styles.overlay} />
+      <Item
         button
         onPress={handlePress}
-        style={(styles.listitem, styles.cardView)}
+        style={styles.transparent}
       >
-        <Card style={styles.transparent}>
+        <Card button style={styles.transparent} onPress={handlePress}>
+
+          <View style={styles.center}>
+            <Thumbnail
+              bordered
+              source={{ uri: product.img }}
+              style={styles.thumbnail}
+            />
+          </View>
+          <View style={styles.center}>
+            <Text style={styles.text} >
+              {product.name} </Text>
+          </View>
+
+
           <CardItem style={styles.transparent}>
-            <Left>
-              <Thumbnail
-                bordered
-                source={{ uri: product.img }}
-                style={styles.thumbnail}
-              />
-              <Text style={styles.text}>
-                {product.name}
-                {"\n"}
-                <Text style={styles.text1}>
-                  Price per item: {product.price} KWD
+            <Text style={styles.text1}>
+              Each: {product.price} KWD
                 </Text>
-                {"\n"}
-                <Text style={styles.text1}>
-                  Added to store {moment(product.date_added).fromNow()}
-                </Text>
-              </Text>
-            </Left>
+            <Text style={styles.text1}>             {"\n"}
+
+              Added to store {moment(product.date_added).fromNow()}
+            </Text>
           </CardItem>
         </Card>
-      </ListItem>
-    </Content>
+      </Item>
+    </Content >
   );
 };
 

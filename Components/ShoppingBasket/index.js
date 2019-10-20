@@ -14,6 +14,10 @@ class ShoppingBasket extends Component {
 
   static navigationOptions = {
     title: "Shopping Basket",
+    headerStyle: {
+      backgroundColor: "#3dffcb",
+      fontWeight: 'bold',
+    }
   };
 
   handlePress = () => {

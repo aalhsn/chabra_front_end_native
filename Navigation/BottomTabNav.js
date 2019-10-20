@@ -18,10 +18,13 @@ const BottomTabNav = createBottomTabNavigator(
         showLabel: false,
 
         style: {
-          backgroundColor: "#3493c7",
+          backgroundColor: "#4693e0",
 
         },
-
+        headerStyle: {
+          backgroundColor: "#3dffcb",
+          fontWeight: 'bold',
+        }
 
 
       },
