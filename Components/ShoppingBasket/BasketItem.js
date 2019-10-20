@@ -10,18 +10,18 @@ class BasketItem extends Component {
       <ListItem style={{ borderBottomWidth: 0 }}>
         <Left>
           <Text style={{ color: "black", marginLeft: 16 }}> {item.name} </Text>
-          <Text note style={{ marginLeft: 16 }}>
+          <Text note style={{ marginLeft: 30 }}>
             {item.price}
           </Text>
         </Left>
         <Body>
-          <Text style={{ color: "black" }}>{item.quantity}</Text>
+          <Text style={{ color: "black", marginLeft: 60 }}>{item.quantity}</Text>
         </Body>
-        <Right>
-          <Button transparent>
-            <Icon name="trash" style={{ color: "white", fontSize: 21 }} />
-          </Button>
-        </Right>
+        <Button transparent>
+          <Text>
+            <Icon name="ios-trash" type="Ionicons" style={{ color: "#1a215c", fontSize: 32 }} />
+          </Text>
+        </Button>
       </ListItem>
     );
   }

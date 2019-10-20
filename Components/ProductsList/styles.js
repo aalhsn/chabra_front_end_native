@@ -10,12 +10,19 @@ const styles = StyleSheet.create({
     borderRadius: 30,
 
   },
+
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
   text: {
     color: "white",
     fontSize: 22,
     fontWeight: "bold",
     marginBottom: 30,
-
+    justifyContent: 'center',
+    alignItems: 'center',
     opacity: 1
   },
 
@@ -74,10 +81,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     flexDirection: "row",
     borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
 
   },
   thumbnail: {
-    backgroundColor: "white",
+    backgroundColor: "transparent",
     opacity: 1,
     height: 140,
     width: 140,

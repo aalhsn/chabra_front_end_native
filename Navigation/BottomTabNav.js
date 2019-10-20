@@ -11,14 +11,23 @@ const BottomTabNav = createBottomTabNavigator(
   },
   {
     defaultNavigationOptions: {
-      headerTintColor: "white",
-      headerStyle: {
-        backgroundColor: "rgb(20,90,100)"
-      },
 
-      cardStyle: {
-        backgroundColor: "rgb(20,90,100)"
-      }
+      tabBarOptions:
+      {
+        tabBarVisible: false,
+        showLabel: false,
+
+        style: {
+          backgroundColor: "#4693e0",
+
+        },
+        headerStyle: {
+          backgroundColor: "#3dffcb",
+          fontWeight: 'bold',
+        }
+
+
+      },
     }
   }
 );

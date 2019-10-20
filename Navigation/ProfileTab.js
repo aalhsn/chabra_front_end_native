@@ -3,6 +3,7 @@ import { Icon } from "native-base";
 
 //Temp for testing
 import OrderDetails from "../Components/OrderDetails";
+import Drawer from '../Components/Drawer'
 
 // Components:
 import Profile from "../Components/Profile";
@@ -15,19 +16,25 @@ import { createStackNavigator } from "react-navigation-stack";
 
 const ProfileTab = createStackNavigator(
     {
-        LoginScreen: Login,
-        OrderListScreen:OrderList,
-        OrderDetailScreen: OrderDetails, //temp for testing
         ProfileScreen: Profile,
+        SideMenuScreen: Drawer, //temp for testing
+        LoginScreen: Login,
+        OrderListScreen: OrderList,
+        OrderDetailScreen: OrderDetails, //temp for testing
         SignupScreen: Signup,
-        SummaryScreen: OrderSum
+        SummaryScreen: OrderSum,
+
 
     },
 
     {
         navigationOptions: {
             tabBarLabel: "Profile",
-            tabBarIcon: () => <Icon type="FontAwesome" name="user" size={20} />
+            tabBarIcon: () => <Icon type="FontAwesome" name="user" size={20} />,
+            headerStyle: {
+                backgroundColor: "#3dffcb",
+                fontWeight: 'bold',
+            }
         }
     }
 );

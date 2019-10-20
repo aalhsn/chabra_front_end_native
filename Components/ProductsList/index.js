@@ -18,7 +18,14 @@ import styles from "./styles";
 class ProductsList extends Component {
   static navigationOptions = {
     title: "Chabra List",
-    headerRight: <BasketBtn />
+    headerRight: <BasketBtn />,
+    headerStyle: {
+      backgroundColor: "#3dffcb",
+      fontWeight: 'bold',
+
+
+    }
+
   };
 
   render() {

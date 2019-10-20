@@ -15,7 +15,9 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
+
     margin: 20,
+
     backgroundColor: "black",
     opacity: 0.6,
     borderRadius: 30,
@@ -44,10 +46,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignSelf: "center"
   },
-  basketBtn: {
+  menuBtn: {
     fontSize: 20,
     color: "white",
-    margin: 20
 
   },
   description: {
@@ -59,6 +60,16 @@ const styles = StyleSheet.create({
     color: 'white',
     height: 30,
     width: 30,
+  },
+
+  menu: {
+    color: "white",
+    marginTop: 8,
+    marginRight: 2,
+    height: 50,
+    width: 50,
+    // tintColor: "white",
+
   },
   price: {
     fontWeight: "bold",
