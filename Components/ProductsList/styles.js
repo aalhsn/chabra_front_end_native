@@ -81,6 +81,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     flexDirection: "row",
     borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
 
   },
   thumbnail: {

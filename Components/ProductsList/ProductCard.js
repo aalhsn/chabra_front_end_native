@@ -8,13 +8,14 @@ import { Col, Row, Grid } from "react-native-easy-grid";
 // NativeBase Components
 import {
   Content,
+  Container,
   ListItem,
   Card,
   CardItem,
   Thumbnail,
   Text,
   Left,
-  Item
+  Item, Body,
 } from "native-base";
 
 // Style
@@ -31,12 +32,17 @@ const ProductCard = ({ navigation, product }) => {
     <Content style={styles.container} >
       <View
         style={styles.overlay} />
-      <Item
+      <CardItem
         button
         onPress={handlePress}
         style={styles.transparent}
       >
-        <Card button style={styles.transparent} onPress={handlePress}>
+
+
+        <Card button style={styles.transparent}>
+          <CardItem>
+
+          </CardItem>
 
           <View style={styles.center}>
             <Thumbnail
@@ -44,12 +50,14 @@ const ProductCard = ({ navigation, product }) => {
               source={{ uri: product.img }}
               style={styles.thumbnail}
             />
+
           </View>
+
           <View style={styles.center}>
             <Text style={styles.text} >
               {product.name} </Text>
-          </View>
 
+          </View>
 
           <CardItem style={styles.transparent}>
             <Text style={styles.text1}>
@@ -61,7 +69,7 @@ const ProductCard = ({ navigation, product }) => {
             </Text>
           </CardItem>
         </Card>
-      </Item>
+      </CardItem>
     </Content >
   );
 };

@@ -30,6 +30,12 @@ class OrderHistory extends Component {
     const history = () => orders.map((order, idx) => {
       return <OrderCard order={order} key={idx} />;
     });
+    // 
+    if (!user)
+      return (
+        this.props.navigation.replace("LoginScreen")
+
+      )
 
     return (
       <Content style={{ marginTop: 10 }}>
@@ -42,6 +48,7 @@ class OrderHistory extends Component {
 
 
 const mapStateToProps = state => ({
+  user: state.authReducer.user,
   orders: state.basketReducer.orders,
 
 });

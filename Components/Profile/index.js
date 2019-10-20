@@ -167,15 +167,11 @@ class Profile extends Component {
 
                             </CardItem>
 
-                            <Content >
-                                <Card style={{ backgroundColor: "transparent" }}>
+                            <Content  >
+                                <Card style={styles.container}>
 
 
-
-
-
-
-                                    <CardItem style={{ backgroundColor: "transparent" }}
+                                    <CardItem style={{ backgroundColor: "transparent", margin: 15 }}
                                     >
                                         <Body >
                                             <Text style={styles.titleOfDetail}>Username:  <Text> {profile.user.username}</Text>
