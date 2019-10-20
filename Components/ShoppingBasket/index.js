@@ -3,12 +3,15 @@ import { connect } from "react-redux";
 import { removeItemFromBasket, checkoutBasket } from "../../redux/actions";
 
 // NativeBase Components
-import { Text, List, Button, Title } from "native-base";
+import { Text, List, Button, Title, Container, Body, ListItem } from "native-base";
 import GradientButton from 'react-native-gradient-buttons';
 import styles from "./styles";
 
+import { ImageBackground, View, ScrollView } from "react-native"
+
 // Component
 import BasketItem from "./BasketItem";
+import wallpaper from "../../assets/wall.png";
 
 class ShoppingBasket extends Component {
 
@@ -52,14 +55,39 @@ class ShoppingBasket extends Component {
     }
 
     return (
-      <List>
-        {basketItems}
-        <Text>Total: {this.totalPrice()} KWD</Text>
 
-        <GradientButton width='90%' blueMarine rounded style={styles.roundedBtn} onPressAction={() => this.handlePress()}>
-          <Text style={styles.checkoutStyle}>Checkout</Text>
-        </GradientButton>
-      </List>
+      <ImageBackground
+        source={wallpaper}
+        style={{ width: "100%", height: "100%" }}
+      >
+        <Container style={styles.container}>
+          <ScrollView style={styles.scrollView}>
+
+            <List>
+
+              {basketItems}
+
+
+
+            </List>
+          </ScrollView>
+
+          <Container style={styles.containerBottom}>
+            <View style={styles.hairLine} />
+
+            <ListItem style={styles.itemList}>
+
+              <Text style={styles.total}>Total: {this.totalPrice()} KWD</Text>
+            </ListItem>
+            <GradientButton width='90%' blueMarine rounded style={styles.roundedBtn} onPressAction={() => this.handlePress()}>
+              <Text style={styles.checkoutStyle}>Checkout</Text>
+            </GradientButton>
+          </Container>
+
+
+        </Container>
+
+      </ImageBackground>
     );
   }
 }

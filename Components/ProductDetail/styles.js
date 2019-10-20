@@ -15,9 +15,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
-
     margin: 20,
-
     backgroundColor: "black",
     opacity: 0.6,
     borderRadius: 30,
