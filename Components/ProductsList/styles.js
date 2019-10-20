@@ -1,6 +1,18 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+
+  itemList: {
+    backgroundColor: "rgba(255, 255, 255, 0.52)",
+    width: 200,
+    opacity: 1,
+    marginLeft: 5,
+    marginRight: 5,
+    marginBottom: 5,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     backgroundColor: "transparent",
     opacity: 1,
@@ -25,7 +37,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     opacity: 1
   },
+  basketBtn: {
+    fontSize: 20,
+    color: "black",
+    margin: 20
 
+  },
+  icon2: {
+    color: 'white',
+    height: 30,
+    width: 30,
+  },
+
+  mybutn: {
+    borderRadius: 100,
+    width: 100,
+    backgroundColor: "white"
+
+  },
   text1: {
     color: "white",
     fontSize: 16,

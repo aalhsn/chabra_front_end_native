@@ -40,7 +40,6 @@ class ProductDetail extends Component {
   static navigationOptions = ({ navigation }) => {
 
     return {
-      //Hey Anfal ask why this annoying title is not being displayed!!!!! 
       title: navigation.getParam("productName"),
       headerRight: <BasketBtn />,
       headerStyle: {
