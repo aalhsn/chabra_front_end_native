@@ -27,4 +27,6 @@ class BasketItem extends Component {
   }
 }
 
+
+
 export default BasketItem;

@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import styles from "../Profile/styles";
+import SideBar from "../../Navigation/SideBar"
 
 // NativeBase Components
 
-import { List, Content, Spinner } from "native-base";
+import { List, Drawer, Content, Spinner, Button, Icon } from "native-base";
 
+import {fetchOrders} from "../../redux/actions"
 
 //Components
 import OrderCard from "./OrderCard";
@@ -12,37 +15,96 @@ import BasketBtn from "../BasketBtn";
 
 
 
+
 // Style
-import styles from "./styles";
+
 
 class OrderHistory extends Component {
-  static navigationOptions = {
-    title: "Orders History",
-    headerRight: <BasketBtn />,
-    headerStyle: {
-      backgroundColor: "#3dffcb",
-      fontWeight: 'bold',
+
+  state = {
+    drawerIsOpen: false,
+}
+
+
+
+handleDrawer = async () => {
+    if (this.state.drawerIsOpen) {
+        this.drawer._root.close()
+    } else {
+        this.drawer._root.open()
     }
-  };
+    this.setState({ drawerIsOpen: !this.state.drawerIsOpen })
+    this.props.navigation.setParams({ "isOpen": this.state.drawerIsOpen })
+}
+static navigationOptions = ({ navigation }) => {
+    return {
+
+        title: "Orders History",
+
+        headerLeft: <Button
+            style={styles.menu}
+            transparent onPress={() => navigation.getParam("handleDrawer")()}>
+            {navigation.getParam("isOpen") ? <Icon
+                name="close"
+                type="AntDesign"
+                style={styles.icon, styles.menu}
+            /> : <Icon
+                    name="menu"
+                    type="Feather"
+                    style={styles.icon, styles.menu}
+                />}
+
+        </Button>,
+
+
+        headerStyle: {
+            backgroundColor: "#3dffcb",
+            fontWeight: 'bold',
+        }
+    }
+
+};
+
+
+  componentDidMount() {
+        this.props.fetchOrders();
+    }
+
+
 
   render() {
-    const orders = this.props.orders;
-    const history = () => orders.map((order, idx) => {
-      return <OrderCard order={order} key={idx} />;
-    });
-    // 
-    if (!user)
+   
+  
+    if (this.props.loading){
       return (
-        this.props.navigation.replace("LoginScreen")
+        <Content style={{ marginTop: 10 }}>
+          <Spinner/>
+        </Content>
+      );
 
-      )
-
+    }else {
+      const orders = this.props.orders;
+      const history =  orders.map((order) => {
+        return <OrderCard order={order} key={order.id} />;
+      });
     return (
+      <Drawer ref={(ref) => { this.drawer = ref; }}
+      content={<SideBar navigator={this.navigator} />}
+      onClose={() => this.closeDrawer()}
+      panOpenMask={0.6}
+      openDrawerOffset={.4}
+      onClose={this.closeDrawer}
+      onOpen={this.openDrawer}
+      captureGestures="open"
+
+  >
       <Content style={{ marginTop: 10 }}>
-        <List>{orders && history()}</List>
+        <List>{history}</List>
       </Content>
+      </Drawer>
     );
   }
+}
 }
 
 
@@ -50,7 +112,16 @@ class OrderHistory extends Component {
 const mapStateToProps = state => ({
   user: state.authReducer.user,
   orders: state.basketReducer.orders,
+  loading: state.basketReducer.orderLoading
 
 });
 
-export default connect(mapStateToProps)(OrderHistory);
+
+const mapDispatchToProps = dispatch => {
+  return {
+      fetchOrders: () => dispatch(fetchOrders()),
+
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderHistory);

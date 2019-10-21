@@ -2,7 +2,8 @@ import * as actionTypes from "../actions/types";
 
 const initialState = {
   items: [],
-  orders:[]
+  orders:[],
+  orderLoading:true
 };
 
 const basketReducer = (state = initialState, action) => {
@@ -10,11 +11,7 @@ const basketReducer = (state = initialState, action) => {
     case actionTypes.ADD_ITEM:
       let newItem = action.payload;
 
-      let checkItem = state.items.find(
-        item =>
-          item.name === newItem.name
-          
-      );
+      let checkItem = state.items.find(item => item.id === newItem.id);
       if (checkItem) {
         checkItem.quantity+=newItem.quantity
         return {
@@ -40,7 +37,12 @@ const basketReducer = (state = initialState, action) => {
         orders:state.orders.concat(action.payload),
         items: []
       };
-
+    case actionTypes.FETCH_ORDERS:
+      const orders = action.payload
+      return{
+      orders: orders,
+      orderLoading: false
+      }
     default:
       return state;
   }

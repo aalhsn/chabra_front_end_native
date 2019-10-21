@@ -86,11 +86,24 @@ class ProductCard extends Component {
   }
 };
 
+          <CardItem style={styles.transparent}>
+            <Text style={styles.text1}>
+              Each: {product.price} KWD
+                </Text>
+            <Text style={styles.text1}>
+              Added to store {moment(product.date_added).fromNow()}
+            </Text>
+          </CardItem>
+        </Card>
+      </CardItem>
+    </Content>
+  );
 const mapDispatchToProps = dispatch => {
   return {
 
     addToBasket: item => dispatch(addItemToBasket(item))
   };
+
 };
 export default withNavigation(connect(
   null,

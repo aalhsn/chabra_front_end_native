@@ -25,16 +25,18 @@ class ShoppingBasket extends Component {
 
   handlePress = () => {
     if (!this.props.user) {
-      this.props.navigation.navigate("LoginScreen");
+      this.props.navigation.push("LoginScreen");
     } else {
-      this.props.navigation.navigate("SummaryScreen")
+      this.props.navigation.push("SummaryScreen")
     }
   }
   totalPrice = () => {
     let total = 0;
-    this.props.items.forEach(item => {
-      total = total + parseFloat(item.price) * parseFloat(item.quantity);
-    });
+    if(this.props.items){
+      this.props.items.forEach(item => {
+        total = total + parseFloat(item.price) * parseFloat(item.quantity);
+      });
+    }
     return total.toFixed(3);
   };
 
@@ -80,7 +82,7 @@ class ShoppingBasket extends Component {
               <Text style={styles.total}>Total: {this.totalPrice()} KWD</Text>
             </ListItem>
             <GradientButton width='90%' blueMarine rounded style={styles.roundedBtn} onPressAction={() => this.handlePress()}>
-              <Text style={styles.checkoutStyle}>Checkout</Text>
+              <Text style={styles.checkoutStyle}>Proceed to checkout</Text>
             </GradientButton>
           </Container>
 

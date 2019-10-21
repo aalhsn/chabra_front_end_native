@@ -68,9 +68,9 @@ class ProductDetail extends Component {
   handleAddItem = () => {
     const newItem = {
       id: this.props.product.id,
+      quantity: this.state.quantity,
       name: this.props.product.name,
-      price: this.props.product.price,
-      quantity: this.state.quantity
+      price: this.props.product.price
     };
     this.props.addToBasket(newItem);
   };
