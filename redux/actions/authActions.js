@@ -20,6 +20,19 @@ const resetProfile = () => ({
 });
 
 
+export const editProfile = (userData) => {
+  return async dispatch => {
+    try {
+      await instance.put("profile/edit/", userData);
+      dispatch({ type: actionTypes.EDIT_PROFILE });
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+
 export const checkForExpiredToken = navigation => {
   return async dispatch => {
     // Get token

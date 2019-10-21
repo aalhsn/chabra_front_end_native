@@ -17,7 +17,7 @@ import profileHeader from "../../assets/profileHeader3.jpg"
 // Style
 import styles from "./styles";
 
-class Profile extends Component {
+class EditProfile extends Component {
     state = {
         drawerIsOpen: false,
     }
@@ -36,7 +36,7 @@ class Profile extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
 
-            title: "Profile",
+            title: "Edit Profile",
 
             headerLeft: <Button
                 style={styles.menu}
@@ -124,9 +124,6 @@ class Profile extends Component {
 
             )
         } else {
-            {
-                console.log("profile.image", profile.image)
-            }
             return (
                 <>
                     <ImageBackground
@@ -228,13 +225,15 @@ const mapStateToProps = state => ({
     user: state.authReducer.user,
     profile: state.authReducer.profile,
     profileLoading: state.authReducer.profileLoading,
+
 });
 
 const mapDispatchToProps = dispatch => {
     return {
         fetchProfile: () => dispatch(actionCreators.fetchProfile()),
+        editProfile: (userDate) => dispatch(actionCreators.editProfile(userDate)),
 
     };
 };
 
-export default withNavigation((connect(mapStateToProps, mapDispatchToProps)(Profile)));
+export default withNavigation((connect(mapStateToProps, mapDispatchToProps)(EditProfile)));

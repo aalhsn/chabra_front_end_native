@@ -6,4 +6,4 @@ export {
   checkoutBasket
 } from "./productsActions";
 export { fetchProductDetail, resetProductDetail } from "./productDetailActions";
-export { signup, login, logout, checkForExpiredToken, fetchOrders} from "./authActions";
+export { signup, login, logout, fetchProfile, resetProfile, editProfile, checkForExpiredToken, fetchOrders } from "./authActions";
