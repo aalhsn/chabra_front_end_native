@@ -16,8 +16,7 @@ const styles = StyleSheet.create({
     hairLine: {
         backgroundColor: '#575b61',
         height: 1,
-        marginBottom: 22,
-        marginTop: 22,
+        marginTop: 10,
         width: 340
     },
     menu: {
@@ -65,7 +64,8 @@ const styles = StyleSheet.create({
     },
 
     titleOfDetail: {
-        marginBottom: 22,
+        marginTop: 15,
+        // marginBottom: 22,
         color: "black",
         fontSize: 20,
         fontWeight: "bold",
