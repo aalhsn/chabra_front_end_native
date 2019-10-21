@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { Icon } from "native-base";
 
-//Temp for testing
-
-import Drawer from '../Components/Drawer'
-
 // Components:
 import Profile from "../Components/Profile";
+import EditProfile from "../Components/EditProfile";
+
 import Login from "../Components/Login";
 import Signup from "../Components/Signup";
+import OrderList from '../Components/OrderHistory'
 
 
 import { createStackNavigator } from "react-navigation-stack";
@@ -16,10 +15,11 @@ import { createStackNavigator } from "react-navigation-stack";
 const ProfileTab = createStackNavigator(
     {
         ProfileScreen: Profile,
-        SideMenuScreen: Drawer, //temp for testing
         LoginScreen: Login,
         SignupScreen: Signup,
-        
+        EditProfileScreen: EditProfile,
+        OrderListScreen: OrderList,
+
 
 
     },

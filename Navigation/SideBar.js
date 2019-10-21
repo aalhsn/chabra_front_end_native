@@ -34,7 +34,7 @@ class SideBar extends Component {
 
                         <Item >
 
-                            <Button transparent >
+                            <Button transparent onPress={() => this.props.navigation.push("EditProfileScreen")}>
                                 <Icon
                                     name="user-edit"
                                     type="FontAwesome5"
