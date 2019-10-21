@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
 
   itemList: {
     backgroundColor: "rgba(255, 255, 255, 0.52)",
-    width: 200,
+    width: 180,
     opacity: 1,
     marginLeft: 5,
     marginRight: 5,

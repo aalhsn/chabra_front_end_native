@@ -5,8 +5,8 @@ import { withNavigation } from "react-navigation";
 import { connect } from "react-redux";
 import { CardViewWithImage } from 'react-native-simple-card-view'
 import GradientButton from 'react-native-gradient-buttons';
-
 import { Col, Row, Grid } from "react-native-easy-grid";
+
 
 // NativeBase Components
 import {
@@ -30,7 +30,7 @@ class ProductCard extends Component {
 
 
   handlePress = () => {
-    navigation.navigate(
+    this.props.navigation.navigate(
       "ProductDetailScreen",
       { productID: this.props.product.id, productName: this.props.product.name }
     );
@@ -49,31 +49,34 @@ class ProductCard extends Component {
 
     return (
       <>
-        <CardItem
-          button
-          onPress={this.handlePress}
-          style={styles.itemList}
-        >
+        <Col style={{ width: 200 }}>
+
+          <CardItem
+            button
+            onPress={this.handlePress}
+            style={styles.itemList}
+          >
 
 
-          <CardViewWithImage
-            width={180}
-            source={{ uri: this.props.product.img }}
-            content={`Each: ${this.props.product.price} KWD`
-            }
-            title={this.props.product.name}
-            titleFontSize={20}
-            titleFontFamily={"Avenir"}
-            imageWidth={180}
-            imageHeight={180}
-            buttonComponent
-            contentFontFamily={"Futura"}
-            contentFontSize={16}
-            roundedImage={false}
-            style={styles.transparent}
-          />
+            <CardViewWithImage
+              width={140}
+              source={{ uri: this.props.product.img }}
+              content={`${this.props.product.price} KWD`
+              }
+              title={this.props.product.name}
+              titleFontSize={20}
+              titleFontFamily={"Avenir"}
+              imageWidth={140}
+              imageHeight={140}
+              buttonComponent
+              contentFontFamily={"Futura"}
+              contentFontSize={16}
+              roundedImage={false}
+              style={styles.transparent}
+            />
 
-        </CardItem>
+          </CardItem>
+        </Col>
         {/* <Button  onPress={this.handleAddItem}> */}
 
         {/* </Button> */}
