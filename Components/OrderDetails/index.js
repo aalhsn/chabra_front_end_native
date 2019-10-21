@@ -11,17 +11,18 @@ import styles from "./styles";
 import BasketItem from "../SummaryOrder/BasketItem"
 
 class OrderDetail extends Component {
+
+
+   
   static navigationOptions = ({ order, navigation }) => {
     return {
-      title: `Order Detail`
+      title: "Order Detail"
     };
   };
   
   render() {
-    const order = this.props.orders.find(order=>order.ref === this.props.navigation.getParam("orderRef"))
-   
-    const getOrderITem =() => order.items.map(item => <Text>{item.name} - {item.price}KWD | Q: {item.quantity} </Text>)
-    console.log("Deatiadwd3e3#@!!@#!@$!!!!!!!!!!!!!!!!!!!",order)
+    let order = this.props.orders.find(order=>order.id === this.props.navigation.getParam("orderID"))
+    const getOrderITem =() => order.baskets.map(item => <Text>{item.product.name} - {item.product.price}KWD | Q: {item.quantity} </Text>)
     return (
       <Container>
         <Content padder>
@@ -31,7 +32,7 @@ class OrderDetail extends Component {
               button
               onPress={() => alert("This is Card Header")}
             >
-            <Text style={styles.middleText}>Order Ref.: {order.ref}</Text>
+            <Text style={styles.middleText}>Order Ref: {(order.order_ref).toUpperCase()}</Text>
             </CardItem>
             <CardItem button onPress={() => alert("This is Card Body")}>
               <Body>
@@ -43,10 +44,10 @@ class OrderDetail extends Component {
                 </View>
                 <View style={styles.hairLine} />
                 
-                <Text style={styles.titleOfDetail}>Total Price: {order.total_order_price}</Text>
+                <Text style={styles.titleOfDetail}>Total Price: {order.total}</Text>
                 <View style={styles.hairLine} />
                 <Text style={styles.titleOfDetail}>Order Date:</Text>
-                <Text>{order.date}</Text>
+                <Text>{order.date_time}</Text>
               </Body>
             </CardItem>
             <CardItem

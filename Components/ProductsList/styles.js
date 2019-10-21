@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    opacity: 1
+    opacity: 1,
+    marginLeft: 10
   },
 
   text1: {
@@ -91,6 +92,7 @@ const styles = StyleSheet.create({
     height: 140,
     width: 140,
     borderRadius: 30,
+    marginLeft:200,
 
 
 

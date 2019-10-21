@@ -68,7 +68,7 @@ export const login = (userData, navigation) => {
       let decodedUser = jwt_decode(user.access);
       setAuthToken(user.access);
       dispatch(setCurrentUser(decodedUser));
-
+      dispatch(fetchOrders());
       //Ask Khalid what he means by then goBack()
       //Khalid's Note Navigate to profile after defining login screen in ProfileTab then goBack()
       navigation.replace("ProfileScreen");
@@ -98,11 +98,15 @@ export const logout = () => {
 
   }
 }
-  // setAuthToken();
-  // return (setCurrentUser())
 
-//}
-
-
+export const fetchOrders = () => async dispatch => {
+  try {
+    const res = await instance.get("items/");
+    const orders = res.data;
+    dispatch({ type: actionTypes.FETCH_ORDERS, payload: orders });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 

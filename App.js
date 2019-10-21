@@ -5,6 +5,7 @@ import * as Font from "expo-font";
 
 // Store
 import store from "./redux";
+
 import HomePage from "./Components/HomePage";
 import { fetchProducts, checkForExpiredToken } from "./redux/actions";
 store.dispatch(fetchProducts());

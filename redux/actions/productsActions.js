@@ -29,7 +29,13 @@ export const setLoading = () => ({
     payload: item
   });
   
-  export const checkoutBasket = (order) => ({
-    type: actionTypes.CHECKOUT,
-    payload: order
-  });
+  
+  export const checkoutBasket = products => async dispatch => {
+    try {
+      const res = await instance.post("items/", products);
+      dispatch({ type: actionTypes.CHECKOUT, payload: res.data});
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  

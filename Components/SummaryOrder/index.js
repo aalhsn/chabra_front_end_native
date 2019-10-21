@@ -34,29 +34,24 @@ class OrderSummary extends Component {
   };
 
 
-  OrderNumber = () => {
-    let total = Math.random()
-      .toString(36)
-      .toUpperCase();
-    return total.substr(3, 5);
-  };
 
   handlePress = () => {
     const newOrder = {
-      id: "need it from backend",
-      ref: "CH" + this.OrderNumber(),
-      items: this.props.items,
-      total_order_price: this.totalPrice(),
-      address: this.state.address,
-      date: moment(Date.now()).format("MMMM Do YYYY, h:mm:ss a"),
-      customer: this.props.user
+      baskets:this.props.items,
+      address : this.state.address
     };
     this.props.checkoutBasket(newOrder);
-    alert("Order is received! \n Your Order Reference ID is [ " + newOrder.ref + " ]");
+    this.props.navigation.replace("ThankYouScreen")
+
 
   };
 
   render() {
+    if (!this.props.user)
+    return (
+      this.props.navigation.replace("LoginScreen")
+
+    )
     let items = this.props.items;
     let basketItems;
     if (items) {
@@ -107,7 +102,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  checkoutBasket: (order) => dispatch(checkoutBasket(order))
+  checkoutBasket: (items) => dispatch(checkoutBasket(items))
 });
 
 export default connect(

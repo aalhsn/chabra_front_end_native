@@ -21,7 +21,7 @@ class SideBar extends Component {
 
                         <Item >
 
-                            <Button transparent onPress={() => this.props.navigation.navigate("OrderListScreen")}  >
+                            <Button transparent onPress={() => this.props.navigation.push("OrderListScreen")}  >
                                 <Icon
                                     name="back"
                                     type="Entypo"
