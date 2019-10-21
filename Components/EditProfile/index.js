@@ -5,7 +5,8 @@ import { withNavigation } from "react-navigation";
 
 // NativeBase Components
 import {
-    Text, Body, CardItem, Content, Card, Spinner, Button, Thumbnail, Drawer, Icon
+    Text, Body, CardItem, Content, Card, Spinner, Button, Input,
+    Drawer, Icon, Item
 } from "native-base";
 import { ImageBackground, View, Image } from "react-native";
 
@@ -13,16 +14,22 @@ import { ImageBackground, View, Image } from "react-native";
 import wallpaper from "../../assets/wall.png";
 import SideBar from '../../Navigation/SideBar';
 import profileHeader from "../../assets/profileHeader3.jpg"
+import GradientButton from 'react-native-gradient-buttons';
 
 // Style
 import styles from "./styles";
+import { black } from "ansi-colors";
 
 class EditProfile extends Component {
     state = {
         drawerIsOpen: false,
     }
 
+    userDateCreater = (dataFromState) => {
 
+        let userDate = { "user": { "username": "a", "first_name": "", "last_name": "", "email": "" }, "phone": null, "gender": null, "age": null, "image": null }
+        return userDate
+    }
 
     handleDrawer = async () => {
         if (this.state.drawerIsOpen) {
@@ -151,6 +158,7 @@ class EditProfile extends Component {
                                 >
 
                                     <View style={styles.center}>
+                                        {/* add image picker to update user profile image */}
                                         <Image
                                             style={styles.image}
                                             bordered
@@ -171,36 +179,128 @@ class EditProfile extends Component {
                                     <CardItem style={{ backgroundColor: "transparent", margin: 15 }}
                                     >
                                         <Body >
-                                            <Text style={styles.titleOfDetail}>Username:  <Text> {profile.user.username}</Text>
+                                            <Text style={styles.titleOfDetail}>First Name: <Text> {profile.user.first_name}</Text>
                                             </Text>
+                                            <Item
+                                                rounded
+                                                style={{ borderWidth: 15, borderColor: "#123dff", borderRadius: 40, backgroundColor: "white", marginTop: 10 }}
+                                            >
+                                                <Input
+                                                    style={{ color: "black", margin: 10, fontSize: 18, fontFamily: "Futura", backgroundColor: "transparent", height: 20 }}
+                                                    autoCorrect={false}
+                                                    autoCapitalize="none"
+                                                    placeholder={profile.user.first_name}
+                                                    onChangeText={first_name => this.setState({ first_name })}
+                                                    value={this.state.first_name}
+                                                />
+
+                                            </Item>
+
                                             <View style={styles.hairLine} />
-
-                                            <Text style={styles.titleOfDetail}>First Name: <Text> {profile.user.first_name}</Text>
-
-                                            </Text>
-                                            <View style={styles.hairLine} />
-
                                             <Text style={styles.titleOfDetail}>Last Name: <Text> {profile.user.last_name}</Text>
 
                                             </Text>
+                                            <Item
+                                                rounded
+                                                style={{ borderWidth: 15, borderColor: "#123dff", borderRadius: 40, backgroundColor: "white", marginTop: 10 }}
+                                            >
+                                                <Input
+                                                    style={{ color: "black", margin: 10, fontSize: 18, fontFamily: "Futura", backgroundColor: "transparent", height: 20 }}
+                                                    autoCorrect={false}
+                                                    autoCapitalize="none"
+                                                    placeholder={profile.user.last_name}
+                                                    onChangeText={last_name => this.setState({ last_name })}
+                                                    value={this.state.last_name}
+                                                />
+
+                                            </Item>
+
                                             <View style={styles.hairLine} />
 
                                             <Text style={styles.titleOfDetail}>Age: {profile.age}</Text>
+                                            <Item
+                                                rounded
+                                                style={{ borderWidth: 15, borderColor: "#123dff", borderRadius: 40, backgroundColor: "white", marginTop: 10 }}
+                                            >
+                                                <Input
+                                                    style={{ color: "black", margin: 10, fontSize: 18, fontFamily: "Futura", backgroundColor: "transparent", height: 20 }}
+                                                    autoCorrect={false}
+                                                    autoCapitalize="none"
+                                                    placeholder={profile.age}
+                                                    onChangeText={age => this.setState({ age })}
+                                                    value={this.state.age}
+                                                />
+
+                                            </Item>
+
+
                                             <View style={styles.hairLine} />
 
 
                                             <Text style={styles.titleOfDetail}>Email: {profile.user.email}</Text>
+                                            <Item
+                                                rounded
+                                                style={{ borderWidth: 15, borderColor: "#123dff", borderRadius: 40, backgroundColor: "white", marginTop: 10 }}
+                                            >
+                                                <Input
+                                                    style={{ color: "black", margin: 10, fontSize: 18, fontFamily: "Futura", backgroundColor: "transparent", height: 20 }}
+                                                    autoCorrect={false}
+                                                    autoCapitalize="none"
+                                                    placeholder={profile.user.email}
+                                                    onChangeText={email => this.setState({ email })}
+                                                    value={this.state.email}
+                                                />
+
+                                            </Item>
+
+
                                             <View style={styles.hairLine} />
 
 
 
                                             <Text style={styles.titleOfDetail}>Phone Number: {profile.phone}</Text>
+                                            <Item
+                                                rounded
+                                                style={{ borderWidth: 15, borderColor: "#123dff", borderRadius: 40, backgroundColor: "white", marginTop: 10 }}
+                                            >
+                                                <Input
+                                                    style={{ color: "black", margin: 10, fontSize: 18, fontFamily: "Futura", backgroundColor: "transparent", height: 20 }}
+                                                    autoCorrect={false}
+                                                    autoCapitalize="none"
+                                                    placeholder={profile.phone}
+                                                    onChangeText={phone => this.setState({ phone })}
+                                                    value={this.state.phone}
+                                                />
+
+                                            </Item>
+
                                             <View style={styles.hairLine} />
 
                                             <Text style={styles.titleOfDetail}>Gender: {this.genderString(profile.gender)}</Text>
+                                            <Item
+                                                rounded
+                                                style={{ borderWidth: 15, borderColor: "#123dff", borderRadius: 40, backgroundColor: "white", marginTop: 10 }}
+                                            >
+                                                {/* use picker menu to choose the gender*/}
+                                                <Input
+                                                    style={{ color: "black", margin: 10, fontSize: 18, fontFamily: "Futura", backgroundColor: "transparent", height: 20 }}
+                                                    autoCorrect={false}
+                                                    autoCapitalize="none"
+                                                    placeholder={this.genderString(profile.gender)}
+                                                    onChangeText={gender => this.setState({ gender })}
+                                                    value={this.state.gender}
+                                                />
 
+                                            </Item>
                                         </Body>
                                     </CardItem>
+                                    <GradientButton radius={40} style={{
+                                        width: 380, marginTop: 10, textAlign: "center",
+                                        alignSelf: "center"
+                                    }} onPressAction={() => this.props.editProfile(this.state)}
+                                    >
+                                        <Text style={{ color: "white", fontFamily: "Futura", fontSize: 22, }}>Update Profile</Text>
+                                    </GradientButton>
 
 
                                 </Card>

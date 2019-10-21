@@ -77,9 +77,7 @@ class ProductCard extends Component {
 
           </CardItem>
         </Col>
-        {/* <Button  onPress={this.handleAddItem}> */}
 
-        {/* </Button> */}
 
       </>
     );
