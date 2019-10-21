@@ -201,7 +201,6 @@ class Profile extends Component {
                                             <View style={styles.hairLine} />
 
                                             <Text style={styles.titleOfDetail}>Gender: {this.genderString(profile.gender)}</Text>
-                                            <View style={styles.hairLine} />
 
                                         </Body>
                                     </CardItem>

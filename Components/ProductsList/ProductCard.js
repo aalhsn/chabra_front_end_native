@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import moment from "moment";
 import { withNavigation } from "react-navigation";
-
+import { connect } from "react-redux";
+import { CardViewWithImage } from 'react-native-simple-card-view'
+import GradientButton from 'react-native-gradient-buttons';
 import { Col, Row, Grid } from "react-native-easy-grid";
+
 
 // NativeBase Components
 import {
@@ -15,49 +18,73 @@ import {
   Thumbnail,
   Text,
   Left,
-  Item, Body,
+  Item,
+  Body,
+  Button,
+  Icon,
 } from "native-base";
 
 // Style
 import styles from "./styles";
+class ProductCard extends Component {
 
-const ProductCard = ({ navigation, product }) => {
-  const handlePress = () => {
-    navigation.navigate(
+
+  handlePress = () => {
+    this.props.navigation.navigate(
       "ProductDetailScreen",
-      { productID: product.id, productName: product.name }
+      { productID: this.props.product.id, productName: this.props.product.name }
     );
   };
-  return (
-    <Content style={styles.container} >
-      <View
-        style={styles.overlay} />
-      <CardItem
-        button
-        onPress={handlePress}
-        style={styles.transparent}
-      >
+
+  handleAddItem = () => {
+    const newItem = {
+      id: this.props.product.id,
+      name: this.props.product.name,
+      price: this.props.product.price,
+      quantity: 1,
+    };
+    this.props.addToBasket(newItem);
+  };
+  render() {
+
+    return (
+      <>
+        <Col style={{ width: 200 }}>
+
+          <CardItem
+            button
+            onPress={this.handlePress}
+            style={styles.itemList}
+          >
 
 
-        <Card button style={styles.transparent}>
-          <CardItem>
-
-          </CardItem>
-
-          <View style={styles.center}>
-            <Thumbnail
-              bordered
-              source={{ uri: product.img }}
-              style={styles.thumbnail}
+            <CardViewWithImage
+              width={140}
+              source={{ uri: this.props.product.img }}
+              content={`${this.props.product.price} KWD`
+              }
+              title={this.props.product.name}
+              titleFontSize={20}
+              titleFontFamily={"Avenir"}
+              imageWidth={140}
+              imageHeight={140}
+              buttonComponent
+              contentFontFamily={"Futura"}
+              contentFontSize={16}
+              roundedImage={false}
+              style={styles.transparent}
             />
 
-          </View>
+          </CardItem>
+        </Col>
+        {/* <Button  onPress={this.handleAddItem}> */}
 
-          <View style={styles.center}>
-            <Text style={styles.text} >
-              {product.name} </Text>
+        {/* </Button> */}
 
-          </View>
+      </>
+    );
+  }
+};
 
           <CardItem style={styles.transparent}>
             <Text style={styles.text1}>
@@ -71,6 +98,14 @@ const ProductCard = ({ navigation, product }) => {
       </CardItem>
     </Content>
   );
-};
+const mapDispatchToProps = dispatch => {
+  return {
 
-export default withNavigation(ProductCard);
+    addToBasket: item => dispatch(addItemToBasket(item))
+  };
+
+};
+export default withNavigation(connect(
+  null,
+  mapDispatchToProps
+)(ProductCard));
