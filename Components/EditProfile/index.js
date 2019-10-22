@@ -23,6 +23,14 @@ import { black } from "ansi-colors";
 class EditProfile extends Component {
     state = {
         drawerIsOpen: false,
+        "username": "",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "phone": null,
+        "gender": null,
+        "age": null,
+        "image": null
 
     }
 
@@ -70,6 +78,8 @@ class EditProfile extends Component {
         if (this.props.user) {
 
             this.props.fetchProfile();
+            const profile = this.props.profile
+            this.setState({ first_name: profile.user.first_name, last_name: profile.user.last_name, email: profile.user.email, phone: profile.phone, gender: profile.gender, age: profile.age, image: profile.image })
         }
         this.props.navigation.setParams({ handleDrawer: this.handleDrawer, isOpen: this.state.drawerIsOpen })
 
@@ -297,7 +307,7 @@ class EditProfile extends Component {
                                     <GradientButton radius={40} style={{
                                         width: 280, margin: 20, textAlign: "center",
                                         alignSelf: "center"
-                                    }} onPressAction={() => this.props.editProfile(this.state)}
+                                    }} onPressAction={() => this.props.editProfile(this.state, this.props.navigation)}
                                     >
                                         <Text style={{ color: "white", fontFamily: "Futura", fontSize: 22, }}>Update Profile</Text>
                                     </GradientButton>
@@ -331,7 +341,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
     return {
         fetchProfile: () => dispatch(actionCreators.fetchProfile()),
-        editProfile: (userDate) => dispatch(actionCreators.editProfile(userDate)),
+        editProfile: (userDate, navigation) => dispatch(actionCreators.editProfile(userDate, navigation)),
 
     };
 };

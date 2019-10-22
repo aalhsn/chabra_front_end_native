@@ -20,25 +20,27 @@ const resetProfile = () => ({
 });
 
 
-export const editProfile = (userData) => {
+export const editProfile = (userData, navigation) => {
   return async dispatch => {
     try {
       console.log("userData", userData)
       let newUserDate = {
-        "user":
+        user:
         {
           username: "",
           first_name: userData.first_name,
           last_name: userData.last_name,
-          email: userData.email,
-          phone: userData.phone,
-          gender: userData.gender,
-          age: userData.gender,
-          image: userData.image
-        }
+          email: userData.email
+        },
+        phone: userData.phone,
+        gender: userData.gender,
+        age: userData.age,
+        image: userData.image
       }
-      await instance.put("profile/edit/", newUserDate);
-      dispatch({ type: actionTypes.EDIT_PROFILE });
+
+      const res = await instance.put("profile/edit/", newUserDate);
+      dispatch({ type: actionTypes.EDIT_PROFILE, payload: res.data });
+      navigation.navigate("ProfileScreen")
 
     } catch (error) {
       console.error(error);
