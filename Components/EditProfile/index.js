@@ -23,13 +23,10 @@ import { black } from "ansi-colors";
 class EditProfile extends Component {
     state = {
         drawerIsOpen: false,
+
     }
 
-    userDateCreater = (dataFromState) => {
 
-        let userDate = { "user": { "username": "a", "first_name": "", "last_name": "", "email": "" }, "phone": null, "gender": null, "age": null, "image": null }
-        return userDate
-    }
 
     handleDrawer = async () => {
         if (this.state.drawerIsOpen) {
@@ -131,6 +128,7 @@ class EditProfile extends Component {
 
             )
         } else {
+            console.log("profile.image", profile.image)
             return (
                 <>
                     <ImageBackground
@@ -162,7 +160,7 @@ class EditProfile extends Component {
                                         <Image
                                             style={styles.image}
                                             bordered
-                                            source={{ uri: `http://chabra.herokuapp.com${profile.image}` }}
+                                            source={{ uri: `http://134.209.242.76/${profile.image}` }}
                                         >
                                         </Image>
 
@@ -292,10 +290,12 @@ class EditProfile extends Component {
                                                 />
 
                                             </Item>
+                                            <View style={styles.hairLine} />
                                         </Body>
                                     </CardItem>
+
                                     <GradientButton radius={40} style={{
-                                        width: 380, marginTop: 10, textAlign: "center",
+                                        width: 280, margin: 20, textAlign: "center",
                                         alignSelf: "center"
                                     }} onPressAction={() => this.props.editProfile(this.state)}
                                     >
