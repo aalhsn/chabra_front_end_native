@@ -20,6 +20,7 @@ import styles from "./styles";
 class Profile extends Component {
     state = {
         drawerIsOpen: false,
+
     }
 
 
@@ -157,7 +158,7 @@ class Profile extends Component {
                                         <Image
                                             style={styles.image}
                                             bordered
-                                            source={{ uri: `http://chabra.herokuapp.com${profile.image}` }}
+                                            source={{ uri: `http://134.209.242.76/${profile.image}` }}
                                         >
                                         </Image>
 
