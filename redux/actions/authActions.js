@@ -4,7 +4,6 @@ import jwt_decode from "jwt-decode";
 import { AsyncStorage } from "react-native";
 import instance from "./instance";
 
-
 export const fetchProfile = () => async dispatch => {
   try {
     const res = await instance.get("profile/");
@@ -15,6 +14,37 @@ export const fetchProfile = () => async dispatch => {
   }
 };
 
+
+export const login = (userData, navigation) => {
+  return async dispatch => {
+    try {
+      let response = await instance.post("login/", userData);
+      let user = response.data;
+      console.log("user:", user)
+      let decodedUser = jwt_decode(user.access);
+      dispatch(setAuthToken(user.access));
+      dispatch(setCurrentUser(decodedUser));
+      // dispatch(fetchOrders());
+      //Ask Khalid what he means by then goBack()
+      //Khalid's Note Navigate to profile after defining login screen in ProfileTab then goBack()
+      navigation.replace("ProfileScreen");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+
+export const signup = (userData, navigation) => {
+  return async dispatch => {
+    try {
+      await instance.post("register/", userData);
+      dispatch(login(userData, navigation));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
 const resetProfile = () => ({
   type: actionTypes.RESET_PROFILE,
 });
@@ -63,7 +93,7 @@ export const checkForExpiredToken = navigation => {
       // Check token expiration
       if (user.exp >= currentTime) {
         // Set auth token header
-        setAuthToken(token);
+        dispatch(setAuthToken(token));
         // Set user
         dispatch(setCurrentUser(user));
       } else {
@@ -73,14 +103,19 @@ export const checkForExpiredToken = navigation => {
   };
 };
 
-const setAuthToken = async token => {
-  if (token) {
-    await AsyncStorage.setItem("token", token);
-    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-  } else {
-    await AsyncStorage.removeItem("token");
-    delete instance.defaults.headers.common.Authorization;
+const setAuthToken = (token) => {
+  return async dispatch => {
+
+    if (token) {
+      await AsyncStorage.setItem("token", token);
+      instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+      dispatch(fetchProfile());
+    } else {
+      await AsyncStorage.removeItem("token");
+      delete instance.defaults.headers.common.Authorization;
+    }
   }
+
 };
 
 const setCurrentUser = user => ({
@@ -88,54 +123,28 @@ const setCurrentUser = user => ({
   payload: user
 });
 
-export const login = (userData, navigation) => {
-  return async dispatch => {
-    try {
-      let response = await instance.post("login/", userData);
-      let user = response.data;
-      console.log("user:", user)
-      let decodedUser = jwt_decode(user.access);
-      setAuthToken(user.access);
-      dispatch(setCurrentUser(decodedUser));
-      dispatch(fetchOrders());
-      //Ask Khalid what he means by then goBack()
-      //Khalid's Note Navigate to profile after defining login screen in ProfileTab then goBack()
-      navigation.replace("ProfileScreen");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-};
 
-export const signup = (userData, navigation) => {
-  return async dispatch => {
-    try {
-      await instance.post("register/", userData);
-      dispatch(login(userData, navigation));
-    } catch (error) {
-      console.error(error);
-    }
-  };
-};
+
+
 
 export const logout = () => {
   return async dispatch => {
 
-    setAuthToken();
+    dispatch(setAuthToken());
     dispatch(setCurrentUser());
     dispatch(resetProfile());
 
   }
 }
 
-export const fetchOrders = () => async dispatch => {
-  try {
-    const res = await instance.get("items/");
-    const orders = res.data;
-    dispatch({ type: actionTypes.FETCH_ORDERS, payload: orders });
-  } catch (error) {
-    console.error(error);
-  }
-};
+// export const fetchOrders = () => async dispatch => {
+//   try {
+//     const res = await instance.get("orders/");
+//     const orders = res.data;
+//     dispatch({ type: actionTypes.FETCH_ORDERS, payload: orders });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 
 

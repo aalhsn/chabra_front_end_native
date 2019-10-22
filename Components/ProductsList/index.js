@@ -4,7 +4,7 @@ import * as actionCreators from "../../redux/actions";
 
 // NativeBase Components
 
-import { List, Content, Spinner, Text } from "native-base";
+import { List, Content, Spinner, Text, Item, Button, Icon } from "native-base";
 import { ImageBackground, View } from "react-native";
 import { Col, Row, Grid } from "react-native-easy-grid";
 
@@ -45,6 +45,20 @@ class ProductsList extends Component {
         source={wallpaper}
         style={{ width: "100%", height: "100%" }}
       >
+        <Item >
+          <Button transparent onPress={this.props.logout} >
+
+
+            <Icon
+              name="log-out"
+              type="Feather"
+              style={styles.icon2}
+            />
+            <Text style={styles.menuBtn}>
+              Logout</Text>
+          </Button>
+        </Item>
+
         <SearchBar />
         <Content style={{ marginTop: 10 }}>
           <Grid>
@@ -64,7 +78,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    filterProducts: query => dispatch(actionCreators.filterProducts(query))
+    filterProducts: query => dispatch(actionCreators.filterProducts(query)),
+    logout: () => dispatch(actionCreators.logout())
+
   };
 };
 
