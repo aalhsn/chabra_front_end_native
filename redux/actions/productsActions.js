@@ -1,5 +1,4 @@
 import * as actionTypes from "./types";
-
 import instance from "./instance";
 
 export const fetchProducts = () => async dispatch => {
@@ -12,12 +11,14 @@ export const fetchProducts = () => async dispatch => {
   }
 };
 
+
 export const filterProducts = query => {
   return {
     type: actionTypes.FILTER_PRODUCTS,
     payload: query
   };
 };
+
 
 export const setLoading = () => ({
   type: actionTypes.LOADING
@@ -35,7 +36,13 @@ export const removeItemFromBasket = item => ({
   payload: item
 });
 
-export const checkoutBasket = order => ({
-  type: actionTypes.CHECKOUT,
-  payload: order
-});
+
+export const checkoutBasket = products => async dispatch => {
+  try {
+    const res = await instance.post("items/", products);
+    dispatch({ type: actionTypes.CHECKOUT, payload: res.data });
+  } catch (error) {
+    console.error(error);
+  }
+};
+

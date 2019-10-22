@@ -20,7 +20,7 @@ const OrderCard = ({ navigation, order }) => {
   const handlePress = () => {
     navigation.navigate(
       "OrderDetailScreen",
-      { orderRef: order.ref }
+      { orderID: order.id }
     );
   };
   return (
@@ -35,14 +35,14 @@ const OrderCard = ({ navigation, order }) => {
           <CardItem style={styles.transparent}>
             <Left>
               <Text style={styles.text}>
-                {order.ref}
+                {(order.order_ref).toUpperCase()}
                 {"\n"}
                 <Text style={styles.text1}>
-                  Total {order.total_order_price} KWD
+                  Total {order.total} KWD
                 </Text>
                 {"\n"}
                 <Text style={styles.text1}>
-                  Ordered {order.date}
+                  Ordered {order.date_time}
                 </Text>
               </Text>
             </Left>

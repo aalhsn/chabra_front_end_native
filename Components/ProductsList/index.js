@@ -28,6 +28,7 @@ class ProductsList extends Component {
     }
   };
 
+
   render() {
     const products = this.props.products;
     let market;

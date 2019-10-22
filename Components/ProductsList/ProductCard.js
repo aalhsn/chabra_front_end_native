@@ -77,9 +77,7 @@ class ProductCard extends Component {
 
           </CardItem>
         </Col>
-        {/* <Button  onPress={this.handleAddItem}> */}
 
-        {/* </Button> */}
 
       </>
     );
@@ -91,6 +89,7 @@ const mapDispatchToProps = dispatch => {
 
     addToBasket: item => dispatch(addItemToBasket(item))
   };
+
 };
 export default withNavigation(connect(
   null,

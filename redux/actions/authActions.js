@@ -20,6 +20,33 @@ const resetProfile = () => ({
 });
 
 
+export const editProfile = (userData) => {
+  return async dispatch => {
+    try {
+      console.log("userData", userData)
+      let newUserDate = {
+        "user":
+        {
+          username: "",
+          first_name: userData.first_name,
+          last_name: userData.last_name,
+          email: userData.email,
+          phone: userData.phone,
+          gender: userData.gender,
+          age: userData.gender,
+          image: userData.image
+        }
+      }
+      await instance.put("profile/edit/", newUserDate);
+      dispatch({ type: actionTypes.EDIT_PROFILE });
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+
 export const checkForExpiredToken = navigation => {
   return async dispatch => {
     // Get token
@@ -68,7 +95,7 @@ export const login = (userData, navigation) => {
       let decodedUser = jwt_decode(user.access);
       setAuthToken(user.access);
       dispatch(setCurrentUser(decodedUser));
-
+      dispatch(fetchOrders());
       //Ask Khalid what he means by then goBack()
       //Khalid's Note Navigate to profile after defining login screen in ProfileTab then goBack()
       navigation.replace("ProfileScreen");
@@ -98,11 +125,15 @@ export const logout = () => {
 
   }
 }
-  // setAuthToken();
-  // return (setCurrentUser())
 
-//}
-
-
+export const fetchOrders = () => async dispatch => {
+  try {
+    const res = await instance.get("items/");
+    const orders = res.data;
+    dispatch({ type: actionTypes.FETCH_ORDERS, payload: orders });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 
