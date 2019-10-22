@@ -3,7 +3,8 @@ export {
   setLoading,
   addItemToBasket,
   removeItemFromBasket,
-  checkoutBasket
+  checkoutBasket,
+  filterProducts
 } from "./productsActions";
 export { fetchProductDetail, resetProductDetail } from "./productDetailActions";
 export { signup, login, logout, checkForExpiredToken } from "./authActions";

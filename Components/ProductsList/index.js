@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import * as actionCreators from "../../redux/actions";
 
 // NativeBase Components
 
@@ -10,6 +11,7 @@ import { Col, Row, Grid } from "react-native-easy-grid";
 //Components
 import ProductCard from "./ProductCard";
 import BasketBtn from "../BasketBtn";
+import SearchBar from "../SearchBar";
 
 import wallpaper from "../../assets/wall.png";
 
@@ -22,32 +24,10 @@ class ProductsList extends Component {
     headerRight: <BasketBtn />,
     headerStyle: {
       backgroundColor: "#3dffcb",
-      fontWeight: 'bold',
-
-
+      fontWeight: "bold"
     }
-
   };
 
-  handleGridLayout = (marketArray) => {
-    const gridItems = [];
-    const rowItem = [];
-
-    for (let i = 1; i < marketArray.length; i++) {
-      if (i % 4 != 0) {
-        let j = i - 1;
-        rowItem.push(marketArray[j]);
-
-      } else if (i % 4 == 0) {
-        gridItems.push(<Row style={{ flex: 1 }}>  {rowItem} </Row>);
-        rowItem.splice(0, rowItem.length);
-
-      }
-
-    }
-
-    return gridItems
-  }
   render() {
     const products = this.props.products;
     let market;
@@ -55,7 +35,7 @@ class ProductsList extends Component {
       return <Spinner />;
     }
     if (products) {
-      market = products.map((product, idx) => {
+      market = this.props.filteredProducts.map((product, idx) => {
         return <ProductCard product={product} key={idx} />;
       });
     }
@@ -64,24 +44,10 @@ class ProductsList extends Component {
         source={wallpaper}
         style={{ width: "100%", height: "100%" }}
       >
+        <SearchBar />
         <Content style={{ marginTop: 10 }}>
           <Grid>
-            <Col style={{ width: 200 }} >
-              <Text>Hi ugliness</Text>
-            </Col>
-            <Col>
-              <Text>Hello darkness my old friend</Text>
-
-            </Col>
-          </Grid>
-
-          <Grid>
-            <List>
-              {/* <Row> */}
-              {/* {this.handleGridLayout(market)} */}
-              {market}
-              {/* </Row> */}
-            </List>
+            <List>{market}</List>
           </Grid>
         </Content>
       </ImageBackground>
@@ -91,7 +57,17 @@ class ProductsList extends Component {
 
 const mapStateToProps = state => ({
   products: state.productsReducer.products,
+  filteredProducts: state.productsReducer.filteredProducts,
   loading: state.productsReducer.loading
 });
 
-export default connect(mapStateToProps)(ProductsList);
+const mapDispatchToProps = dispatch => {
+  return {
+    filterProducts: query => dispatch(actionCreators.filterProducts(query))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductsList);
