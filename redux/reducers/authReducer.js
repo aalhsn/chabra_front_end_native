@@ -31,6 +31,12 @@ const reducer = (state = initialState, action) => {
         profileLoading: true
 
       };
+    case actionTypes.EDIT_PROFILE:
+      return {
+        ...state,
+        profile: action.payload
+
+      };
 
     default:
       return state;
