@@ -77,7 +77,7 @@ class EditProfile extends Component {
     componentDidMount() {
         if (this.props.user) {
 
-            this.props.fetchProfile();
+            // this.props.fetchProfile();
             const profile = this.props.profile
             this.setState({ first_name: profile.user.first_name, last_name: profile.user.last_name, email: profile.user.email, phone: profile.phone, gender: profile.gender, age: profile.age, image: profile.image })
         }
@@ -340,7 +340,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchProfile: () => dispatch(actionCreators.fetchProfile()),
+        // fetchProfile: () => dispatch(actionCreators.fetchProfile()),
         editProfile: (userDate, navigation) => dispatch(actionCreators.editProfile(userDate, navigation)),
 
     };

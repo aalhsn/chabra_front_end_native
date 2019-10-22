@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 //Import your stacks
 import ProductsTab from "./ProductsTab";
 import ProfileTab from "./ProfileTab";
+import Logout from "./SideBar"
 
 const BottomTabNav = createBottomTabNavigator(
   {

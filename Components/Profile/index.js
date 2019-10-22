@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actionCreators from "../../redux/actions/authActions";
 import { withNavigation } from "react-navigation";
 
 // NativeBase Components
@@ -25,15 +24,6 @@ class Profile extends Component {
 
 
 
-    handleDrawer = async () => {
-        if (this.state.drawerIsOpen) {
-            this.drawer._root.close()
-        } else {
-            this.drawer._root.open()
-        }
-        await this.setState({ drawerIsOpen: !this.state.drawerIsOpen })
-        this.props.navigation.setParams({ "isOpen": this.state.drawerIsOpen })
-    }
     static navigationOptions = ({ navigation }) => {
         return {
 
@@ -63,22 +53,23 @@ class Profile extends Component {
 
     };
 
-    componentDidMount() {
-        if (this.props.user) {
 
-            this.props.fetchProfile();
+    handleDrawer = async () => {
+        if (this.state.drawerIsOpen) {
+            this.drawer._root.close()
+        } else {
+            this.drawer._root.open()
         }
+        await this.setState({ drawerIsOpen: !this.state.drawerIsOpen })
+        this.props.navigation.setParams({ "isOpen": this.state.drawerIsOpen })
+    }
+
+    componentDidMount() {
         this.props.navigation.setParams({ handleDrawer: this.handleDrawer, isOpen: this.state.drawerIsOpen })
 
     }
 
 
-    componentDidUpdate(prevProps) {
-
-        if (prevProps.user !== this.props.user)
-            this.props.fetchProfile();
-
-    }
 
     genderString = (gender) => {
         if (gender === "F")
@@ -96,20 +87,7 @@ class Profile extends Component {
         if (!user) {
             // if user is undefind
             // redirect to Login page
-            return (
-
-                // (this.props.navigation.replace("LoginScreen")
-
-                // )
-                <>
-                    <Text>The endless cursed hell of the evil demon profile...  </Text>
-
-                    <Button btn btn-danger onPress={this.props.navigation.replace("LoginScreen")}>
-                        <Text>Login</Text>
-                    </Button>
-
-                </>
-            )
+            return this.props.navigation.replace("LoginScreen")
         }
         // else if user is defined 
         if (loading) {
@@ -231,11 +209,5 @@ const mapStateToProps = state => ({
     profileLoading: state.authReducer.profileLoading,
 });
 
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchProfile: () => dispatch(actionCreators.fetchProfile()),
 
-    };
-};
-
-export default withNavigation((connect(mapStateToProps, mapDispatchToProps)(Profile)));
+export default withNavigation((connect(mapStateToProps)(Profile)));
