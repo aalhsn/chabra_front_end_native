@@ -1,32 +1,26 @@
 import React, { Component } from "react";
-import { View } from "react-native";
-import moment from "moment";
+// NativeBase Components
+import {
+  Text,
+  CardItem,
+  Icon, Left
+
+}
+  from "native-base"; import moment from "moment";
 import { withNavigation } from "react-navigation";
+import { addItemToBasket } from "../../redux/actions";
 import { connect } from "react-redux";
 import { CardViewWithImage } from 'react-native-simple-card-view'
 import GradientButton from 'react-native-gradient-buttons';
 import { Col, Row, Grid } from "react-native-easy-grid";
 
-
-// NativeBase Components
-import {
-  Content,
-  Container,
-  ListItem,
-  Card,
-  CardItem,
-  Thumbnail,
-  Text,
-  Left,
-  Item,
-  Body,
-  Button,
-  Icon,
-} from "native-base";
-
 // Style
 import styles from "./styles";
+//Components
+import AddToCart from "../AddToCart";
+
 class ProductCard extends Component {
+
 
 
   handlePress = () => {
@@ -36,15 +30,6 @@ class ProductCard extends Component {
     );
   };
 
-  handleAddItem = () => {
-    const newItem = {
-      id: this.props.product.id,
-      name: this.props.product.name,
-      price: this.props.product.price,
-      quantity: 1,
-    };
-    this.props.addToBasket(newItem);
-  };
   render() {
 
     return (
@@ -68,9 +53,10 @@ class ProductCard extends Component {
               titleFontFamily={"Avenir"}
               imageWidth={140}
               imageHeight={140}
-              buttonComponent
+              buttonComponent={<AddToCart product={this.props.product} />}
               contentFontFamily={"Futura"}
               contentFontSize={16}
+              contentMargin={top = 50, bottom = 50, right = 50, left = 50}
               roundedImage={false}
               style={styles.transparent}
             />
@@ -84,14 +70,6 @@ class ProductCard extends Component {
   }
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
 
-    addToBasket: item => dispatch(addItemToBasket(item))
-  };
-
-};
-export default withNavigation(connect(
-  null,
-  mapDispatchToProps
-)(ProductCard));
+export default withNavigation
+  (ProductCard);

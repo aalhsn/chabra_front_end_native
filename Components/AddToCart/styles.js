@@ -51,16 +51,23 @@ const styles = StyleSheet.create({
   },
 
   mybutn: {
-    borderRadius: 100,
-    width: 100,
-    backgroundColor: "white"
+    borderRadius: 6,
+    height: 50,
+    width: 130,
+    backgroundColor: "#00337a",
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 20,
+    marginBottom: 20,
+
 
   },
   text1: {
     color: "white",
-    fontSize: 16,
-    fontStyle: "italic",
-    fontWeight: "bold",
+    fontSize: 18,
+    fontFamily: "Futura",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   divider: {
     borderBottomColor: "black",
