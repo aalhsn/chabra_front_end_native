@@ -42,7 +42,7 @@ class EditProfile extends Component {
         } else {
             this.drawer._root.open()
         }
-        this.setState({ drawerIsOpen: !this.state.drawerIsOpen })
+        await this.setState({ drawerIsOpen: !this.state.drawerIsOpen })
         this.props.navigation.setParams({ "isOpen": this.state.drawerIsOpen })
     }
     static navigationOptions = ({ navigation }) => {

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actionCreators from "../../redux/actions/authActions";
 import { withNavigation } from "react-navigation";
 
 // NativeBase Components

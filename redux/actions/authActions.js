@@ -53,7 +53,6 @@ const resetProfile = () => ({
 export const editProfile = (userData, navigation) => {
   return async dispatch => {
     try {
-      console.log("userData", userData)
       let newUserDate = {
         user:
         {
@@ -68,7 +67,7 @@ export const editProfile = (userData, navigation) => {
         image: userData.image
       }
 
-      const res = await instance.put("profile/edit/", newUserDate);
+      const res = await instance.put("profile/", newUserDate);
       dispatch({ type: actionTypes.EDIT_PROFILE, payload: res.data });
       navigation.navigate("ProfileScreen")
 
