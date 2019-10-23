@@ -166,7 +166,7 @@ class ProductDetail extends Component {
         source={wallpaper}
         style={{ width: "100%", height: "100%" }}
       >
-        <Content>
+        <Content  style={styles.container} >
           <View style={styles.imgView}>
             <Thumbnail 
               style={styles.image}
@@ -175,15 +175,26 @@ class ProductDetail extends Component {
             />
           </View>
 
+          
+          <View  style={styles.center} >
 
+          <Text         style={{ fontFamily: "Futura", fontSize: 20,}}
+ >Description:</Text> 
+ </View>
 
-          <View style={styles.overlay} >
-          <CardItem  >
+          <CardItem style={styles.myCard2} >
+
             <Text style={styles.description}>{product.description}</Text>
             </CardItem>
-            </View>
 
+            <View  style={styles.center} >
+            <Text         style={{ fontFamily: "Futura", fontSize: 20,}}
+ >Price:</Text> 
+ </View>
+
+            <View  style={styles.center} >
             <Text style={styles.price}> {product.price} KWD</Text>
+            </View>
 
             <View>
 

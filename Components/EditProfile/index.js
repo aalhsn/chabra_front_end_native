@@ -9,6 +9,7 @@ import {
     Drawer, Icon, Item
 } from "native-base";
 import { ImageBackground, View, Image } from "react-native";
+import RNPickerSelect from 'react-native-picker-select';
 
 //Components
 import wallpaper from "../../assets/wall.png";
@@ -93,7 +94,7 @@ class EditProfile extends Component {
 
     componentWillUnmount() {
         if (this.props.errors.length) this.props.resetErrors();
-      }
+    }
 
     genderString = (gender) => {
         if (gender === "F")
@@ -190,21 +191,21 @@ class EditProfile extends Component {
                                     <CardItem style={{ backgroundColor: "transparent", margin: 15 }}
                                     >
                                         <Body >
-                                        {!!errors.length && (
-                    <View>
-                      {errors.map(error => (
-                        <Text
-                          style={{
-                            color: "red",
-                            fontFamily: "Futura"
-                          }}
-                          key={error}
-                        >
-                          {error}
-                        </Text>
-                      ))}
-                    </View>
-                  )}
+                                            {!!errors.length && (
+                                                <View>
+                                                    {errors.map(error => (
+                                                        <Text
+                                                            style={{
+                                                                color: "red",
+                                                                fontFamily: "Futura"
+                                                            }}
+                                                            key={error}
+                                                        >
+                                                            {error}
+                                                        </Text>
+                                                    ))}
+                                                </View>
+                                            )}
 
                                             <Text style={styles.titleOfDetail}>First Name: <Text> {profile.user.first_name}</Text>
                                             </Text>
@@ -306,18 +307,29 @@ class EditProfile extends Component {
                                             <Text style={styles.titleOfDetail}>Gender: {this.genderString(profile.gender)}</Text>
                                             <Item
                                                 rounded
-                                                style={{ borderWidth: 15, borderColor: "#123dff", borderRadius: 40, backgroundColor: "white", marginTop: 10 }}
+                                                style={{ width: 320, height: 45, borderWidth: 15, borderColor: "#123dff", borderRadius: 40, backgroundColor: "white", marginTop: 10 }}
                                             >
                                                 {/* use picker menu to choose the gender*/}
-                                                <Input
-                                                    style={{ color: "black", margin: 10, fontSize: 18, fontFamily: "Futura", backgroundColor: "transparent", height: 20 }}
-                                                    autoCorrect={false}
-                                                    autoCapitalize="none"
-                                                    placeholder={this.genderString(profile.gender)}
-                                                    onChangeText={gender => this.setState({ gender })}
-                                                    value={this.state.gender}
-                                                />
+                                                <View style={{
+                                                    width: 280, marginLeft: 20, textAlign: "center",
+                                                    alignSelf: "center"
+                                                }} >
 
+
+                                                    <RNPickerSelect
+                                                        style={{ color: "black", fontSize: 18, fontFamily: "Futura", backgroundColor: "transparent", height: 20 }}
+                                                        placeholder={{
+                                                            label: 'Select a gender',
+                                                            value: null,
+                                                            color: 'black',
+                                                        }}
+                                                        onValueChange={(value) => { this.state.gender }}
+                                                        items={[
+                                                            { label: 'Female', value: 'F' },
+                                                            { label: 'Male', value: 'M' },
+                                                        ]}
+                                                    />
+                                                </View>
                                             </Item>
                                             <View style={styles.hairLine} />
                                         </Body>
