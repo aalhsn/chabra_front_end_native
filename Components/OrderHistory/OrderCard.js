@@ -35,14 +35,14 @@ const OrderCard = ({ navigation, order }) => {
           <CardItem style={styles.transparent}>
             <Left>
               <Text style={styles.text}>
-                {(order.order_ref).toUpperCase()}
+                Order#: {(order.order_ref).toUpperCase()}
                 {"\n"}
                 <Text style={styles.text1}>
-                  Total {order.total} KWD
+                  Total: {order.total} KWD
                 </Text>
                 {"\n"}
                 <Text style={styles.text1}>
-                  Ordered {order.date_time}
+                  Date: {moment(order.date_time).calendar()}
                 </Text>
               </Text>
             </Left>

@@ -9,7 +9,6 @@ import { List, Drawer, Content, Spinner, Button, Icon } from "native-base";
 import { ImageBackground } from "react-native";
 import wallpaper from "../../assets/wall.png";
 
-import { fetchOrders } from "../../redux/actions"
 
 //Components
 import OrderCard from "./OrderCard";
@@ -68,7 +67,6 @@ class OrderHistory extends Component {
 
 
   componentDidMount() {
-    this.props.fetchOrders();
     this.props.navigation.setParams({ handleDrawer: this.handleDrawer, isOpen: this.state.drawerIsOpen })
 
   }
@@ -90,7 +88,7 @@ class OrderHistory extends Component {
       );
 
     } else {
-      const orders = this.props.orders;
+      const orders = this.props.profile.order_history;
       const history = orders.map((order) => {
         return <OrderCard order={order} key={order.id} />;
       });
@@ -125,19 +123,15 @@ class OrderHistory extends Component {
 
 
 
+
+
 const mapStateToProps = state => ({
   user: state.authReducer.user,
-  orders: state.basketReducer.orders,
-  loading: state.basketReducer.orderLoading
+  profile: state.authReducer.profile,
+  loading: state.authReducer.profileLoading,
 
 });
 
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchOrders: () => dispatch(fetchOrders()),
 
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(OrderHistory);
+export default connect(mapStateToProps)(OrderHistory);

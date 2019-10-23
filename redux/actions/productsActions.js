@@ -39,7 +39,7 @@ export const removeItemFromBasket = item => ({
 
 export const checkoutBasket = products => async dispatch => {
   try {
-    const res = await instance.post("items/", products);
+    const res = await instance.post("orders/", products);
     dispatch({ type: actionTypes.CHECKOUT, payload: res.data });
   } catch (error) {
     console.error(error);
