@@ -93,6 +93,10 @@ class EditProfile extends Component {
 
     }
 
+    componentWillUnmount() {
+        if (this.props.errors.length) this.props.resetErrors();
+      }
+
     genderString = (gender) => {
         if (gender === "F")
             return "Female"
@@ -104,6 +108,7 @@ class EditProfile extends Component {
     render() {
         const profile = this.props.profile;
         const user = this.props.user;
+        const errors = this.props.errors;
         const loading = this.props.profileLoading
 
         if (!user) {
@@ -187,6 +192,22 @@ class EditProfile extends Component {
                                     <CardItem style={{ backgroundColor: "transparent", margin: 15 }}
                                     >
                                         <Body >
+                                        {!!errors.length && (
+                    <View>
+                      {errors.map(error => (
+                        <Text
+                          style={{
+                            color: "red",
+                            fontFamily: "Futura"
+                          }}
+                          key={error}
+                        >
+                          {error}
+                        </Text>
+                      ))}
+                    </View>
+                  )}
+
                                             <Text style={styles.titleOfDetail}>First Name: <Text> {profile.user.first_name}</Text>
                                             </Text>
                                             <Item
@@ -333,6 +354,7 @@ class EditProfile extends Component {
 
 const mapStateToProps = state => ({
     user: state.authReducer.user,
+    errors: state.errors.errors,
     profile: state.authReducer.profile,
     profileLoading: state.authReducer.profileLoading,
 
@@ -342,6 +364,7 @@ const mapDispatchToProps = dispatch => {
     return {
         // fetchProfile: () => dispatch(actionCreators.fetchProfile()),
         editProfile: (userDate, navigation) => dispatch(actionCreators.editProfile(userDate, navigation)),
+        resetErrors: () => dispatch(actionCreators.resetErrors())
 
     };
 };

@@ -6,8 +6,8 @@ import { withNavigation } from "react-navigation";
 import wallpaper from "../../assets/wall.png";
 import logo from "../../assets/chabraLogo.png";
 
-import { ImageBackground, Image } from "react-native"
-import GradientButton from 'react-native-gradient-buttons';
+import { ImageBackground, Image, View } from "react-native";
+import GradientButton from "react-native-gradient-buttons";
 
 // NativeBase Components
 import {
@@ -25,18 +25,17 @@ import {
   Icon
 } from "native-base";
 
-
-
 class Login extends Component {
-
   static navigationOptions = ({ navigation }) => {
-
     return {
-      header: null,
+      header: null
     };
   };
   componentDidMount() {
     this.props.checkForToken();
+  }
+  componentWillUnmount() {
+    if (this.props.errors.length) this.props.resetErrors();
   }
 
   state = {
@@ -49,6 +48,7 @@ class Login extends Component {
   };
 
   render() {
+    const errors = this.props.errors;
     if (this.props.user) {
       return this.props.navigation.replace("ProfileScreen");
     }
@@ -60,28 +60,44 @@ class Login extends Component {
         <Content>
           <Header transparent />
 
-
-          <Image source={logo} style={{
-            width: "70%", height: "70%", textAlign: "center",
-            alignSelf: "center"
-          }}
+          <Image
+            source={logo}
+            style={{
+              width: "70%",
+              height: "70%",
+              textAlign: "center",
+              alignSelf: "center"
+            }}
           />
           <List>
             <ListItem style={{ borderBottomWidth: 0 }}>
               <Body>
                 <Form>
-                  <Body>
-
-                    {/* <Label style={{ color: "white" }}>
-                    {" "}
-                    //add the errors here{" "}
-                  </Label> */}
-
-                  </Body>
+                  {!!errors.length && (
+                    <View>
+                      {errors.map(error => (
+                        <Text
+                          style={{
+                            color: "red",
+                            fontFamily: "Futura"
+                          }}
+                          key={error}
+                        >
+                          {error}
+                        </Text>
+                      ))}
+                    </View>
+                  )}
 
                   <Item
                     rounded
-                    style={{ borderWidth: 15, borderColor: "#123dff", borderRadius: 40, backgroundColor: "white", marginTop: 10 }}
+                    style={{
+                      borderWidth: 15,
+                      borderColor: "#123dff",
+                      borderRadius: 40,
+                      backgroundColor: "white",
+                      marginTop: 10
+                    }}
                   >
                     <Icon
                       style={{ fontSize: 30, marginLeft: 15 }}
@@ -89,7 +105,12 @@ class Login extends Component {
                       type="FontAwesome"
                     />
                     <Input
-                      style={{ margin: 10, fontSize: 18, fontFamily: "Futura", backgroundColor: "transparent" }}
+                      style={{
+                        margin: 10,
+                        fontSize: 18,
+                        fontFamily: "Futura",
+                        backgroundColor: "transparent"
+                      }}
                       autoCorrect={false}
                       autoCapitalize="none"
                       placeholder="Username"
@@ -104,14 +125,21 @@ class Login extends Component {
                   </Body>
                   <Item
                     rounded
-                    style={{ borderWidth: 15, borderColor: "#123dff", borderRadius: 40, backgroundColor: "white", marginTop: 10 }}
+                    style={{
+                      borderWidth: 15,
+                      borderColor: "#123dff",
+                      borderRadius: 40,
+                      backgroundColor: "white",
+                      marginTop: 10
+                    }}
                   >
                     <Icon
                       style={{ fontSize: 30, marginLeft: 15 }}
                       name="ios-lock"
                       type="Ionicons"
                     />
-                    <Input style={{ margin: 10, fontSize: 18, fontFamily: "Futura" }}
+                    <Input
+                      style={{ margin: 10, fontSize: 18, fontFamily: "Futura" }}
                       autoCorrect={false}
                       placeholder="Password"
                       secureTextEntry
@@ -122,23 +150,43 @@ class Login extends Component {
                 </Form>
               </Body>
             </ListItem>
-            <GradientButton radius={40} style={{
-              width: 380, marginTop: 10, textAlign: "center",
-              alignSelf: "center"
-            }} onPressAction={() => this.props.login(this.state, this.props.navigation)}
+            <GradientButton
+              radius={40}
+              style={{
+                width: 380,
+                marginTop: 10,
+                textAlign: "center",
+                alignSelf: "center"
+              }}
+              onPressAction={() =>
+                this.props.login(this.state, this.props.navigation)
+              }
             >
-              <Text style={{ color: "white", fontFamily: "Futura", fontSize: 22, }}>Login</Text>
+              <Text
+                style={{ color: "white", fontFamily: "Futura", fontSize: 22 }}
+              >
+                Login
+              </Text>
             </GradientButton>
 
-            <Button transparent
+            <Button
+              transparent
               onPress={() => this.props.navigation.navigate("SignupScreen")}
               style={{
-                marginTop: 10, textAlign: "center",
+                marginTop: 10,
+                textAlign: "center",
                 alignSelf: "center"
-              }}>
-              <Text style={{
-                color: "#0d1a80", fontFamily: "Avenir", fontSize: 22,
-              }}>New user? Sign up</Text>
+              }}
+            >
+              <Text
+                style={{
+                  color: "#0d1a80",
+                  fontFamily: "Avenir",
+                  fontSize: 22
+                }}
+              >
+                New user? Sign up
+              </Text>
             </Button>
           </List>
           <Body>
@@ -150,11 +198,13 @@ class Login extends Component {
   }
 }
 const mapStateToProps = state => ({
-  user: state.authReducer.user
+  user: state.authReducer.user,
+  errors: state.errors.errors
 });
 const mapDispatchToProps = dispatch => ({
   login: (userData, navigation) =>
     dispatch(actionCreators.login(userData, navigation)),
+  resetErrors: () => dispatch(actionCreators.resetErrors()),
   checkForToken: navigation =>
     dispatch(actionCreators.checkForExpiredToken(navigation))
 });

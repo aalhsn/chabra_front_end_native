@@ -1,6 +1,6 @@
 import * as actionTypes from "./types";
 import jwt_decode from "jwt-decode";
-
+import { setErrors, resetErrors } from "./errors";
 import { AsyncStorage } from "react-native";
 import instance from "./instance";
 
@@ -14,48 +14,52 @@ export const fetchProfile = () => async dispatch => {
   }
 };
 
-
 export const login = (userData, navigation) => {
   return async dispatch => {
     try {
       let response = await instance.post("login/", userData);
       let user = response.data;
-      console.log("user:", user)
+      console.log("user:", user);
       let decodedUser = jwt_decode(user.access);
       dispatch(setAuthToken(user.access));
       dispatch(setCurrentUser(decodedUser));
       // dispatch(fetchOrders());
       //Ask Khalid what he means by then goBack()
       //Khalid's Note Navigate to profile after defining login screen in ProfileTab then goBack()
+      dispatch(resetErrors());
       navigation.replace("ProfileScreen");
     } catch (error) {
-      console.error(error);
+      dispatch({
+        type: actionTypes.SET_ERRORS,
+        payload: error.response.data
+      });
     }
   };
 };
-
 
 export const signup = (userData, navigation) => {
   return async dispatch => {
     try {
       await instance.post("register/", userData);
       dispatch(login(userData, navigation));
+      dispatch(resetErrors());
     } catch (error) {
-      console.error(error);
+      dispatch({
+        type: actionTypes.SET_ERRORS,
+        payload: error.response.data
+      });
     }
   };
 };
 const resetProfile = () => ({
-  type: actionTypes.RESET_PROFILE,
+  type: actionTypes.RESET_PROFILE
 });
-
 
 export const editProfile = (userData, navigation) => {
   return async dispatch => {
     try {
       let newUserDate = {
-        user:
-        {
+        user: {
           username: "",
           first_name: userData.first_name,
           last_name: userData.last_name,
@@ -65,18 +69,20 @@ export const editProfile = (userData, navigation) => {
         gender: userData.gender,
         age: userData.age,
         image: userData.image
-      }
+      };
 
       const res = await instance.put("profile/", newUserDate);
       dispatch({ type: actionTypes.EDIT_PROFILE, payload: res.data });
-      navigation.navigate("ProfileScreen")
-
+      dispatch(resetErrors());
+      navigation.navigate("ProfileScreen");
     } catch (error) {
-      console.error(error);
+      dispatch({
+        type: actionTypes.SET_ERRORS,
+        payload: error.response.data
+      });
     }
   };
 };
-
 
 export const checkForExpiredToken = navigation => {
   return async dispatch => {
@@ -102,9 +108,8 @@ export const checkForExpiredToken = navigation => {
   };
 };
 
-const setAuthToken = (token) => {
+const setAuthToken = token => {
   return async dispatch => {
-
     if (token) {
       await AsyncStorage.setItem("token", token);
       instance.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -113,8 +118,7 @@ const setAuthToken = (token) => {
       await AsyncStorage.removeItem("token");
       delete instance.defaults.headers.common.Authorization;
     }
-  }
-
+  };
 };
 
 const setCurrentUser = user => ({
@@ -122,19 +126,13 @@ const setCurrentUser = user => ({
   payload: user
 });
 
-
-
-
-
 export const logout = () => {
   return async dispatch => {
-
     dispatch(setAuthToken());
     dispatch(setCurrentUser());
     dispatch(resetProfile());
-
-  }
-}
+  };
+};
 
 // export const fetchOrders = () => async dispatch => {
 //   try {
@@ -145,5 +143,3 @@ export const logout = () => {
 //     console.error(error);
 //   }
 // };
-
-
