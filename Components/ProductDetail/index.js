@@ -34,7 +34,7 @@ import GradientButton from 'react-native-gradient-buttons';
 
 class ProductDetail extends Component {
   state = {
-    quantity: 1
+    quantity: 0
   };
 
   static navigationOptions = ({ navigation }) => {
@@ -58,8 +58,40 @@ class ProductDetail extends Component {
     this.props.fetchProductDetail(this.props.navigation.getParam("productID"));
   }
 
+  limited = () => {
+    if (this.props.product.stock < 10 && this.props.product.stock > 0) {
+      return (
+        <>
+          <Text>
+            {this.props.product.stock} items left!
+          </Text>
+        </>
+      );
+    }
+  };
+
   changeQuantity = number => {
     if (this.state.quantity >= 0) {
+      if (
+        this.props.items.find(
+          product => product.id === this.props.product.id
+        )
+      ) {
+        let quantityInCart = this.props.items.find(
+          product => product.id === this.props.product.id
+        ).quantity;
+          if (
+            quantityInCart + number + this.state.quantity >
+            this.props.product.stock
+          ) {
+            return alert("Exceeded stock!");
+          } else {
+            const newQuantity = this.state.quantity + number;
+            this.setState({ quantity: newQuantity });
+          }
+        } else if (number + this.state.quantity > this.props.product.stock) {
+          return alert("Exceeded stock!");
+      }
       const newQuantity = this.state.quantity + number;
       this.setState({ quantity: newQuantity });
     }
@@ -73,6 +105,7 @@ class ProductDetail extends Component {
       price: this.props.product.price
     };
     this.props.addToBasket(newItem);
+    this.setState({ quantity: 0 });
   };
 
   render() {
@@ -81,22 +114,45 @@ class ProductDetail extends Component {
     let checkQuantity = () => {
       if (product.stock > 0) {
         return (
+          <>
+           <CardItem style={styles.myCard }>
+                <Button rounded
+                  onPress={() =>
+                    this.state.quantity > 0 && this.changeQuantity(-1)
+                  }
+                >
+                  <Text>-</Text>
+                </Button>
 
+                <Item rounded style={styles.inputField}>
+                  <Input style={styles.order}>{this.state.quantity}</Input>
+                  {/* <Input
+                    type="text" value={this.state.quantity} /> */}
+                </Item>
+                <Button rounded onPress={() => this.changeQuantity(1)}>
+                  <Text>+</Text>
+                </Button>
+
+
+              </CardItem>
+            {this.limited()}
               <GradientButton  blueMarine style={styles.mybutn} onPressAction={this.handleAddItem}>
               <Text style={styles.basketBtn}>
-                <Icon
-                  name="shopping-basket"
-                  type="FontAwesome"
-                  style={styles.icon2}
-                /> Add to Basket
+               Add to Basket
   
             </Text>
             </GradientButton>
-
+            </>
 
         );
       } else {
-        return <Text>Out of stock.</Text>;
+        return(
+        
+        <Button disabled style={styles.mybutn}>
+        <Text style={styles.basketBtnOutofStock}>Out of Stock</Text>
+      </Button>
+    
+        )
       }
     };
 
@@ -132,26 +188,7 @@ class ProductDetail extends Component {
             <View>
 
 
-              <CardItem style={styles.myCard }>
-                <Button rounded
-                  onPress={() =>
-                    this.state.quantity > 0 && this.changeQuantity(-1)
-                  }
-                >
-                  <Text>-</Text>
-                </Button>
-
-                <Item rounded style={styles.inputField}>
-                  <Input style={styles.order}>{this.state.quantity}</Input>
-                  {/* <Input
-                    type="text" value={this.state.quantity} /> */}
-                </Item>
-                <Button rounded onPress={() => this.changeQuantity(1)}>
-                  <Text>+</Text>
-                </Button>
-
-
-              </CardItem>
+             
             <View>{checkQuantity()}</View>
             </View>
 
@@ -167,6 +204,7 @@ class ProductDetail extends Component {
 const mapStateToProps = state => {
   return {
     product: state.productDetailReducer.product,
+    items: state.basketReducer.items,
     loading: state.productDetailReducer.loading
   };
 };

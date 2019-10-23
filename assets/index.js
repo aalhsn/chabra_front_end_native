@@ -1,0 +1,1 @@
+export const basket = require('./icons8-fast-cart-64.png'); 

@@ -37,7 +37,7 @@ class ProductsList extends Component {
     }
     if (products) {
       market = this.props.filteredProducts.map((product, idx) => {
-        return <ProductCard product={product} key={idx} />;
+        return <ProductCard product={product} key={idx} />
       });
     }
     return (
@@ -45,25 +45,13 @@ class ProductsList extends Component {
         source={wallpaper}
         style={{ width: "100%", height: "100%" }}
       >
-        <Item >
-          <Button transparent onPress={this.props.logout} >
-
-
-            <Icon
-              name="log-out"
-              type="Feather"
-              style={styles.icon2}
-            />
-            <Text style={styles.menuBtn}>
-              Logout</Text>
-          </Button>
-        </Item>
+        
 
         <SearchBar />
-        <Content style={{ marginTop: 10 }}>
+        <Content style={{ marginTop: 10, flexDirection:"column" }}>
           <Grid>
-            <List>{market}</List>
-          </Grid>
+         <Col>{market}</Col>
+            </Grid>
         </Content>
       </ImageBackground>
     );
