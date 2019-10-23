@@ -49,14 +49,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "white",
     margin: 10,
-   
+
 
   },
 
   basketBtnOutofStock: {
     fontSize: 20,
     marginLeft: 30,
-   
+
 
   },
   description: {
@@ -71,18 +71,16 @@ const styles = StyleSheet.create({
 
   },
   price: {
-    fontWeight: "bold",
     fontSize: 20,
 
     textDecorationLine: "none",
     //textAlign: "right",
-    marginLeft: 20,
-    marginRight: 20,
+    margin: 20,
   },
   order: {
     textAlign: "center",
     alignSelf: "center",
-  
+
   },
 
   mybutn: {
@@ -90,17 +88,47 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 100,
     width: 200,
-    marginTop:15
+    marginTop: 15
 
   },
   myCard: {
-    backgroundColor: "white",
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
     borderRadius: 100,
     textAlign: "center",
     alignSelf: "center",
-    marginBottom: 20
+    marginBottom: 20,
+    width: 200,
+
+  },
+  container: {
+    backgroundColor: "rgba(255, 255, 255, 0.52)",
+    opacity: 1,
+    marginTop: 15,
+
+    marginLeft: 15,
+    marginRight: 15,
+    marginBottom: 15,
+    borderRadius: 30,
+
+  },
+  myCard2: {
+    backgroundColor: "transparent",
+    borderRadius: 5,
+    textAlign: "center",
+    alignSelf: "center",
+    marginBottom: 20,
+    width: 370,
+
   },
 
+  hairLine: {
+    backgroundColor: 'rgba(5, 9, 30, 0.46)',
+    height: 2,
+    marginBottom: 30,
+
+    marginLeft: 30,
+    width: 340
+  },
 });
 
 export default styles;

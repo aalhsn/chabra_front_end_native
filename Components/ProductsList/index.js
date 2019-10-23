@@ -45,13 +45,13 @@ class ProductsList extends Component {
         source={wallpaper}
         style={{ width: "100%", height: "100%" }}
       >
-        
+
 
         <SearchBar />
-        <Content style={{ marginTop: 10, flexDirection:"column" }}>
+        <Content style={{ marginTop: 10 }}>
           <Grid>
-         <Col>{market}</Col>
-            </Grid>
+            <Col>{market}</Col>
+          </Grid>
         </Content>
       </ImageBackground>
     );
