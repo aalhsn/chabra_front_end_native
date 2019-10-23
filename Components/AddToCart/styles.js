@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
   },
   icon2: {
     color: 'white',
-    height: 30,
-    width: 30,
+    height: 70,
+    width: 70,
   },
 
   mybutn: {
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     fontFamily: "Futura",
     justifyContent: 'center',
     alignItems: 'center',
+    marginLeft: 170
   },
   divider: {
     borderBottomColor: "black",

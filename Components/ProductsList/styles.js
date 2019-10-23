@@ -3,12 +3,14 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
 
   itemList: {
-    backgroundColor: "rgba(255, 255, 255, 0.52)",
-    width: 180,
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
+    width: 400,
+    height: 500,
     opacity: 1,
     marginLeft: 5,
     marginRight: 5,
-    marginBottom: 5,
+    marginBottom: 20,
+    marginTop: 20,
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
