@@ -9,11 +9,23 @@ const styles = StyleSheet.create({
 
     width: 340
   },
+
+  container: {
+    backgroundColor: "rgba(255, 255, 255, 0.52)",
+    opacity: 1,
+    marginTop: 15,
+
+    marginLeft: 15,
+    marginRight: 15,
+    marginBottom: 15,
+    borderRadius: 30,
+
+  },
   text: {
     color: "black",
-    fontSize: 15,
+    fontSize: 18,
     marginLeft: 16,
-
+    fontFamily: "Futura",
     justifyContent: "center",
     alignItems: "center"
   },
@@ -38,7 +50,7 @@ const styles = StyleSheet.create({
   middleText: {
     marginTop: 12,
     marginBottom: 8,
-
+    backgroundColor: "transparent",
     color: "#191b73",
     fontWeight: "bold",
     fontSize: 24,

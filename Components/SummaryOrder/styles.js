@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
     checkoutStyle: {
         color: "white",
         fontSize: 20,
-
+        padding: 20,
+        marginBottom: 40
     },
 
     image: {
@@ -63,8 +64,18 @@ const styles = StyleSheet.create({
         borderRadius: 80,
         textAlign: "center",
         alignSelf: "center"
-    }
+    },
+    container: {
+        backgroundColor: "rgba(255, 255, 255, 0.52)",
+        opacity: 1,
+        marginTop: 15,
 
+        marginLeft: 15,
+        marginRight: 15,
+        height: 550,
+        borderRadius: 30,
+
+    },
 
 });
 

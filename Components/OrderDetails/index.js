@@ -30,7 +30,11 @@ class OrderDetail extends Component {
 
   render() {
     let order = this.props.profile.order_history.find(order => order.id === this.props.navigation.getParam("orderID"))
-    const getOrderITem = () => order.baskets.map(item => <Text>{item.product.name} - {item.product.price}KWD | Q: {item.quantity} </Text>)
+    let orderAddress = this.props.profile.addresses.find(address => address.id === order.address)
+    const getOrderITem = () => order.baskets.map(item => <Text style={styles.text}>{item.product.name} - {item.product.price} KWD - Qty: {item.quantity} {"\n"} </Text>
+
+
+    )
     return (
       <Container>
         <ImageBackground
@@ -38,36 +42,50 @@ class OrderDetail extends Component {
           style={{ width: "100%", height: "100%" }}
         >
           <Content padder>
-            <Card>
+            <Card style={styles.container}>
               <CardItem
                 style={styles.middleText}
-                button
-                onPress={() => alert("This is Card Header")}
               >
-                <Text style={styles.middleText}>Order Ref: {(order.order_ref).toUpperCase()}</Text>
+                <Text style={styles.middleText}>
+
+                  Order Ref: {(order.order_ref).toUpperCase()}</Text>
               </CardItem>
-              <CardItem button onPress={() => alert("This is Card Body")}>
+              <CardItem style={styles.middleText}>
                 <Body>
-                  <Text style={styles.titleOfDetail}>Shipping Address: {order.address}</Text>
+                  <Text style={styles.titleOfDetail}>Shipping Address:
+
+                  </Text>
+                  <Text style={styles.text}>
+                    Area: {orderAddress.area} {"\n"}
+                    Street: {orderAddress.street} {"\n"}
+                    Block: {orderAddress.block}{"\n"}
+                  </Text>
                   <View style={styles.hairLine} />
                   <Text style={styles.titleOfDetail}>Items ordered:</Text>
-                  <View style={styles.titleOfDetail}>
+
+                  <View style={styles.text}>
                     {getOrderITem()}
                   </View>
+
                   <View style={styles.hairLine} />
 
-                  <Text style={styles.titleOfDetail}>Total Price: {order.total}</Text>
+                  <Text style={styles.titleOfDetail}>Total Price: </Text>
+
+                  <Text style={styles.text}>
+                    {order.total}
+                  </Text>
+
+
                   <View style={styles.hairLine} />
                   <Text style={styles.titleOfDetail}>Order Date:</Text>
-                  <Text>{moment(order.date_time).calendar()}</Text>
+
+                  <Text style={styles.text}>
+                    {moment(order.date_time).calendar()}{"\n"}
+                  </Text>
+
                 </Body>
               </CardItem>
-              <CardItem
-                footer
-                button
-                onPress={() => alert("This is Card Footer")}
-              >
-              </CardItem>
+
             </Card>
           </Content>
         </ImageBackground>
