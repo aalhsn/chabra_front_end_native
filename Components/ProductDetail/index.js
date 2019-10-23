@@ -79,7 +79,7 @@ class ProductDetail extends Component {
     const product = this.props.product;
 
     let checkQuantity = () => {
-      if (product.quantity > 0) {
+      if (product.stock > 0) {
         return (
 
               <GradientButton  blueMarine style={styles.mybutn} onPressAction={this.handleAddItem}>
