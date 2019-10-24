@@ -10,8 +10,8 @@ class BasketItem extends Component {
       <ListItem style={{ borderBottomWidth: 0 }}>
         <Left>
           <Text style={{ color: "black", marginLeft: 16 }}> {item.name} </Text>
-          <Text note style={{ marginLeft: 30 }}>
-            {item.price}
+          <Text style={{ marginLeft: 30 }}>
+            {item.price} KWD
           </Text>
         </Left>
         <Body>

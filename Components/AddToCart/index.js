@@ -10,8 +10,8 @@ import styles from "./styles";
 class AddToCart extends Component {
 
     handleAddItem = () => {
-        if (this.props.products.find(product => product.id === this.props.product.id)){
-            if (this.props.products.find(product => product.id === this.props.product.id).quantity+1 <= this.props.product.stock){
+        if (this.props.products.find(product => product.id === this.props.product.id)) {
+            if (this.props.products.find(product => product.id === this.props.product.id).quantity + 1 <= this.props.product.stock) {
                 const newItem = {
                     id: this.props.product.id,
                     name: this.props.product.name,
@@ -20,7 +20,7 @@ class AddToCart extends Component {
                 };
                 this.props.addToBasket(newItem);
             }
-        
+
             else {
                 return alert("Exceeded stock!");
             }
@@ -39,8 +39,8 @@ class AddToCart extends Component {
     render() {
         return (
 
-           
-                <Button style={{backgroundColor:"#5fcf8d"}}
+
+            <Button style={{ backgroundColor: "#4693e0" }}
                 onPress={this.handleAddItem}>
                 <Text style={styles.text1}><Icon
                     name="ios-add-circle"
@@ -48,9 +48,9 @@ class AddToCart extends Component {
                     style={styles.icon2}
                 /> </Text>
             </Button>
-          
 
-           
+
+
 
         )
     }
@@ -68,9 +68,9 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = (state) => {
     return {
-      products: state.basketReducer.items
+        products: state.basketReducer.items
     };
-  };
+};
 export default connect(
     mapStateToProps,
     mapDispatchToProps
