@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import wallpaper from "../../assets/wall.png";
 
-import {ImageBackground} from "react-native"
+import {ImageBackground, View} from "react-native"
 // NativeBase Components
 import {
   Thumbnail,
   Text,
   Button,
   Content,
-  View,
   Spinner,
   Item,
   Input,
@@ -30,6 +29,7 @@ import {
 //Styles
 import styles from "./styles";
 import GradientButton from 'react-native-gradient-buttons';
+import { red } from "ansi-colors";
 
 
 class ProductDetail extends Component {
@@ -62,7 +62,7 @@ class ProductDetail extends Component {
     if (this.props.product.stock < 10 && this.props.product.stock > 0) {
       return (
         <>
-          <Text>
+          <Text style={{color:"red", marginLeft: 60,}}>
             {this.props.product.stock} items left!
           </Text>
         </>
@@ -135,7 +135,14 @@ class ProductDetail extends Component {
 
 
               </CardItem>
-            {this.limited()}
+              <View style={{ marginLeft: 130,}}>
+
+              <Text style={{color:red, marginLeft: 20,}}>
+              {this.limited()}
+
+              </Text>
+              </View>
+
               <GradientButton  blueMarine style={styles.mybutn} onPressAction={this.handleAddItem}>
               <Text style={styles.basketBtn}>
                Add to Basket
@@ -185,6 +192,8 @@ class ProductDetail extends Component {
           <CardItem style={styles.myCard2} >
 
             <Text style={styles.description}>{product.description}</Text>
+            <Text style={styles.description}>From: {product.origin}</Text>
+            <Text style={styles.description}>Type: {product.type}</Text>
             </CardItem>
 
             <View  style={styles.center} >

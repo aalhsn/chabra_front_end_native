@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
 
         marginLeft: 15,
         marginRight: 15,
-        height: 550,
+        height: 700,
         borderRadius: 30,
 
     },
